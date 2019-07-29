@@ -1,0 +1,35 @@
+# import * from './generated/prisma.graphql'
+
+input Locations {
+  description: String!
+}
+
+type Mutation {
+  signUp(email: String!, password: String!, firstName: String!, lastName: String!, photo: String): User!,
+  signIn(email: String!, password: String!): User!,
+  signOut: SuccessMessage,
+  updateUser(id: ID!, password: String, firstName: String, lastName: String, photo: String):User!
+  createComment(id: ID!, comment: String!): Comment!,
+  createEvent(title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
+  addAttendee(id: ID!): Event!
+
+}
+
+type Query {
+  user: User
+  comment: Comment
+  event(where: EventWhereInput): Event
+  eventsConnection(where: EventWhereInput): EventConnection
+  events(
+    where: EventWhereInput
+    orderBy: EventOrderByInput
+    skip: Int
+    first: Int
+  ): [Event]!
+  comments(where: CommentWhereInput, orderBy: CommentOrderByInput): [Comment]
+}
+
+type Subscription {
+  newEvent: Event
+}
+

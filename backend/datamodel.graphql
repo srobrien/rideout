@@ -1,0 +1,51 @@
+type User {
+  id: ID! @unique @id
+  email: String! @unique
+  firstName: String!
+  lastName: String!
+  password: String!
+  events: [Event] @relation(name: "UserEvents")
+  attending: [Event] @relation(name: "AttendingEvents")
+  photo: String
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type Event {
+  id: ID! @unique @id
+  leader: User! @relation(name: "UserEvents")
+  title: String!
+  description: String
+  startDate: DateTime!
+  attendees: [User] @relation(name: "AttendingEvents")
+  locations: [Location] @relation(name: "EventLocations")
+  comments: [Comment]
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+
+}
+
+type Location {
+  id: ID! @unique @id
+  description: String!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+  event: Event! @relation(name: "EventLocations")
+}
+
+type Comment {
+  id: ID! @unique @id
+  user: User!
+  comment: String!
+  event: Event!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
+type SuccessMessage {
+  id: ID! @unique @id
+  message: String!
+  updatedAt: DateTime! @updatedAt
+  createdAt: DateTime! @createdAt
+}
+
