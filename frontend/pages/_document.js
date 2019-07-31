@@ -27,6 +27,7 @@ export default class MyDocument extends Document {
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
             crossOrigin="anonymous"
           />
+
           <script
             type="text/javascript"
             src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AksOASfzdybmndjlOxhWnhZaNtzG5CMgqUFIgB5Ji8W6Gr748WQL5mijk5w4OmDD"

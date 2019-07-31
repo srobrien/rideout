@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { SubmitButton } from './StyledForm';
 
 export const Container = styled.div`
-  margin-top: 20px;
+  grid-area: Chat;
+  @media (max-width: 830px) {
+    margin: 20px 0 0 0;
+  }
 `;
 
 export const Card = styled.div`

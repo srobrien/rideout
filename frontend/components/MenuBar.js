@@ -4,17 +4,20 @@ import { AuthContext } from './context/Auth';
 import LogOut from './LogOut';
 import {
   StyledMenuBar,
+  Logo,
   Spacer,
-  Title,
-  ButtonSet,
+  Menu,
   UserButton,
   DropMenu,
   Triangle,
+  MenuBurger,
 } from './styled/StyledMenuBar';
+import StyledBurger from './styled/StyledBurger';
 
 const MenuBar = () => {
   const user = useContext(AuthContext) || {};
   const [scroll, setScroll] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const checkScroll = () => {
     if (window.scrollY > 40) {
@@ -34,17 +37,22 @@ const MenuBar = () => {
 
   return (
     <StyledMenuBar scroll={scroll}>
-      <Spacer />
-      <Title>
+      <Logo>
         <Link href="/">
           <a>
             <i className="fas fa-road fa-2x" />
             <h1>RideOut</h1>
           </a>
         </Link>
-      </Title>
+      </Logo>
+
       <Spacer />
-      <ButtonSet>
+
+      <MenuBurger>
+        <StyledBurger isOpen={isOpen} setIsOpen={setIsOpen} />
+      </MenuBurger>
+
+      <Menu>
         <Link href="/">
           <h3>RideOuts</h3>
         </Link>
@@ -69,8 +77,7 @@ const MenuBar = () => {
             </ul>
           </DropMenu>
         </UserButton>
-      </ButtonSet>
-      <Spacer />
+      </Menu>
     </StyledMenuBar>
   );
 };

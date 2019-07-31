@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  @media (max-width: 830px) {
+    grid-template-columns: 0.1fr 4fr 0.1fr;
+    grid-template-areas: 'LSpacer SearchBar RSpacer' 'LSpacer Events RSpacer';
+  }
   display: grid;
   grid-template-columns: 0.25fr 2fr 1fr 0.25fr;
   grid-template-rows: 50px auto;

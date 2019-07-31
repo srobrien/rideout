@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rehooks/window-size": "^1.0.2",
     "@svgr/webpack": "^4.3.1",
     "apollo-boost": "^0.3.1",
     "apollo-cache-inmemory": "^1.6.2",
@@ -30,6 +31,7 @@
     "downshift": "^3.2.10",
     "graphql": "^14.2.1",
     "graphql-tag": "^2.10.1",
+    "hamburgers": "^1.1.3",
     "lodash.debounce": ">=4.17.13",
     "lodash.uniqueid": ">=4.17.13",
     "next": "^8.1.0",

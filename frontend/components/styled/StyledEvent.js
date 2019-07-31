@@ -2,31 +2,62 @@ import styled from 'styled-components';
 import { SubmitButton } from './StyledForm';
 
 export const PageContainer = styled.div`
-  display: grid;
-  grid-template-rows: auto;
-  height: 100%;
+  @media (max-width: 830px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, max-content);
+    grid-template-areas: 'Details' 'Attendees' 'Directions' 'MapContainer' 'Chat';
+  }
+  padding: 0 25px 0 25px;
   margin-top: 30px;
-  grid-template-columns: 0.05fr 1.5fr 1fr 0.05fr;
-  grid-column-gap: 20px;
-  grid-template-areas: 'left-border left right right-border';
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-column-gap: 30px;
 `;
 
-export const LeftBorder = styled.div`
-  grid-area: 'left-border';
+export const Spacer = styled.div`
+  grid-area: Spacer;
 `;
-export const Left = styled.div`
-  grid-area: 'left';
-`;
-export const RightBorder = styled.div`
-  grid-area: 'right-border';
-`;
-export const Right = styled.div`
-  grid-area: 'right';
+
+export const FlexContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-export const MapContainer = styled.div``;
+export const MapContainer = styled.div`
+  grid-area: MapContainer;
+  @media (max-width: 830px) {
+    margin: 20px 0 0 0;
+  }
+  margin-bottom: 30px;
+`;
+
+export const Details = styled.div`
+  @media (max-width: 830px) {
+    margin-bottom: 0;
+  }
+  grid-area: Details;
+  margin-bottom: 10px;
+`;
+
+export const DirectionsContainer = styled.div`
+  @media (max-width: 830px) {
+    margin-bottom: 0;
+  }
+  margin-bottom: 30px;
+`;
+export const Directions = styled.div`
+  height: 400px;
+  overflow: scroll;
+`;
+
+export const Attendees = styled.div`
+  @media (max-width: 830px) {
+    margin-bottom: 0;
+  }
+  grid-area: Attendees;
+  margin-bottom: 30px;
+`;
 
 export const Title = styled.div`
   padding-top: 1px;
@@ -71,10 +102,6 @@ export const DetailsDescription = styled.div`
   }
 `;
 
-export const Details = styled.div``;
-
-export const RouteList = styled.div``;
-
 export const Box = styled.div`
   width: 100%;
   > div {
@@ -82,11 +109,6 @@ export const Box = styled.div`
       width: 100% !important;
     }
   }
-`;
-
-export const Directions = styled.div`
-  overflow: scroll;
-  height: 400px;
 `;
 
 export const AddButton = styled(SubmitButton)`
@@ -118,10 +140,6 @@ export const DetailsContainer = styled.div`
     color: #111111;
     margin-right: 10px;
   }
-`;
-
-export const Attendees = styled.div`
-  margin-top: 20px;
 `;
 
 export const AttendeeListContainer = styled.div`

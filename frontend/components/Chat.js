@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import format from 'date-fns/format';
 import distanceInWords from 'date-fns/distance_in_words';
 import { CREATE_COMMENT } from '../graphql/Mutation';
 import { GET_COMMENTS } from '../graphql/Query';
@@ -68,9 +67,6 @@ const Chat = ({ id }) => {
                           </ChatMessage>
                           <ChatInfo>
                             <h6>{distanceInWords(new Date(), c.createdAt)}</h6>
-
-                            {/* <h6>{format(c.createdAt, 'Do MMM `YY')}</h6>
-                            <h6>{format(c.createdAt, 'HH:MM')}</h6> */}
                           </ChatInfo>
                         </ChatItem>
                       ))}

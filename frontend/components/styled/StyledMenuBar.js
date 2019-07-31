@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledMenuBar = styled.div`
+  @media (max-width: 680px) {
+    grid-template-areas: 'Logo Spacer MenuBurger';
+  }
   display: grid;
-  grid-template-columns: 0.25fr 0.5fr 2fr 0.75fr 0.25fr;
+  grid-template-columns: max-content auto min-content;
+  grid-template-areas: 'Logo Spacer Menu';
   padding: 10px;
   z-index: 5;
   h3 {
@@ -17,9 +21,13 @@ export const StyledMenuBar = styled.div`
   transition: all 0.5s ease-in-out;
 `;
 
-export const Title = styled.div`
-  min-width: 160px;
-  margin-top: 10px;
+export const Logo = styled.div`
+  @media (max-width: 680px) {
+    margin: 10px 0 0 0;
+  }
+  grid-area: Logo;
+  min-width: 180px;
+  margin: 10px 0 0 34px;
   h1 {
     margin-top: 0;
     font-size: 2rem;
@@ -36,10 +44,20 @@ export const Title = styled.div`
   }
 `;
 
-export const ButtonSet = styled.div`
+export const Spacer = styled.div`
+  grid-area: Spacer;
+`;
+
+export const Menu = styled.div`
+  @media (max-width: 680px) {
+    display: none;
+  }
+  grid-area: Menu;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  margin-right: 30px;
   min-width: 300px;
+
   h3 {
     :hover {
       cursor: pointer;
@@ -47,8 +65,6 @@ export const ButtonSet = styled.div`
     }
   }
 `;
-
-export const Spacer = styled.div``;
 
 export const DropMenu = styled.div`
   display: block;
@@ -111,30 +127,10 @@ export const Triangle = styled.div`
   margin-left: -8px;
 `;
 
-export const MenuButton = styled.button`
-  display: inline-block;
-  margin: 0 12px 0 0;
-  background-color: ${props => props.bg};
-  width: 35px;
-  height: 35px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  padding-top: 2px;
-  outline: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  transition: all 0.2s ease-in-out;
-  :hover {
-    background-color: ${props => props.fg};
-    i {
-      color: ${props => props.bg};
-    }
-  }
-  i {
-    color: ${props => props.fg};
-    display: flex;
-    justify-content: center;
-    align-items: center;
+export const MenuBurger = styled.div`
+  grid-area: MenuBurger;
+  display: none;
+  @media (max-width: 680px) {
+    display: block;
   }
 `;

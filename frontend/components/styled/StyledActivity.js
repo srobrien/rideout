@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export const ActivityContainer = styled.div`
+  @media (max-width: 830px) {
+    display: none;
+  }
   grid-area: 'Activity';
   display: grid;
   grid-template-columns: 1fr;
@@ -65,5 +68,4 @@ export const Badge = styled.span`
 export const AttendingEvents = styled.ul`
   padding: 0px;
   margin: 0;
-
 `;

@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { SubmitButton } from './StyledForm';
 
 export const EventContainer = styled.div`
+  @media (max-width: 830px) {
+    margin: 30px 0 0 0;
+  }
   display: grid;
   grid-template-columns: 4fr 1.2fr;
   grid-template-rows: 1fr 2fr 1fr 1.5fr 3fr;
