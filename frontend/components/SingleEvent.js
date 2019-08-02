@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
 import format from 'date-fns/format';
-import useWindowSize from '@rehooks/window-size';
+import useWindowWidth from './WindowWidth';
 import { AuthContext } from './context/Auth';
 import { GET_SINGLE_EVENT } from '../graphql/Query';
 import { Loader } from './styled/StyledLoader';
@@ -30,8 +30,8 @@ import {
 } from './styled/StyledEvent';
 
 const SingleEvent = ({ id }) => {
-  const { innerWidth } = useWindowSize();
   const user = useContext(AuthContext);
+  const innerWidth = useWindowWidth();
   return (
     <Query query={GET_SINGLE_EVENT} variables={{ id }}>
       {({ data, loading }) => {

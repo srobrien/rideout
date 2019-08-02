@@ -6,8 +6,13 @@ export const PageContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, max-content);
-    grid-template-areas: 'Details' 'Attendees' 'Directions' 'MapContainer' 'Chat';
+    grid-template-areas: 'Details' 'Attendees' 'DirectionsContainer' 'MapContainer' 'Chat';
+    padding: 0 15px 0 15px;
   }
+  @media (max-width: 400px) {
+    padding: 2px;
+  }
+
   padding: 0 25px 0 25px;
   margin-top: 30px;
   display: grid;
@@ -15,8 +20,24 @@ export const PageContainer = styled.div`
   grid-column-gap: 30px;
 `;
 
-export const Spacer = styled.div`
-  grid-area: Spacer;
+export const AddEventContainer = styled.div`
+  @media (max-width: 830px) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, max-content);
+    grid-template-areas: 'Details' 'Itinerary' 'DirectionsContainer' 'MapContainer' 'AddButton';
+    padding: 0 15px 0 15px;
+  }
+  @media (max-width: 400px) {
+    padding: 2px;
+  }
+  height: 100%;
+  overflow: hidden;
+  padding: 0 25px 0 25px;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-column-gap: 30px;
 `;
 
 export const FlexContainer = styled.div`
@@ -41,13 +62,19 @@ export const Details = styled.div`
 `;
 
 export const DirectionsContainer = styled.div`
+  grid-area: DirectionsContainer;
   @media (max-width: 830px) {
     margin-bottom: 0;
   }
   margin-bottom: 30px;
 `;
+
+export const Itinerary = styled.div`
+  grid-area: Itinerary;
+`;
+
 export const Directions = styled.div`
-  height: 400px;
+  max-height: 400px;
   overflow: scroll;
 `;
 
