@@ -16,6 +16,7 @@ const AddEventPage = () => {
   if (!user && componentLoaded) {
     Router.push('/');
   }
+
   return <AddEvent />;
 };
 

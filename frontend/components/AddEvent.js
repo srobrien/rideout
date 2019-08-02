@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { Mutation } from 'react-apollo';
-import useWindowWidth from './WindowWidth';
 import { CREATE_EVENT_MUTATION } from '../graphql/Mutation';
 import { ALL_EVENTS_QUERY, PAGINATION_QUERY } from '../graphql/Query';
 import AutoComplete from './AutoComplete';
@@ -26,12 +25,10 @@ import {
   Directions,
   Box,
   AddButton,
-  FlexContainer,
-} from './styled/StyledEvent';
+} from './styled/StyledAddEvent';
 import { Loader } from './styled/StyledLoader';
 
 const AddEvent = () => {
-  const innerWidth = useWindowWidth();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -64,7 +61,7 @@ const AddEvent = () => {
   };
 
   return (
-    <AppLayout menuTitle="Create A New Event">
+    <AppLayout>
       <Mutation
         mutation={CREATE_EVENT_MUTATION}
         refetchQueries={[
@@ -93,228 +90,101 @@ const AddEvent = () => {
               }}
             >
               <AddEventContainer>
-                {innerWidth > 830 && (
-                  <FlexContainer>
-                    <MapContainer>
-                      <Title>
-                        <h1>Interactive Map</h1>
-                      </Title>
-                      <Map locations={locations} />
-                    </MapContainer>
-                    <AddButton
-                      type="submit"
-                      disabled={isValid ? '' : 'disabled'}
-                    >
-                      Submit New Event
-                    </AddButton>
-                  </FlexContainer>
-                )}
+                <MapContainer>
+                  <Title>
+                    <h1>Interactive Map</h1>
+                  </Title>
+                  <Map locations={locations} />
+                </MapContainer>
+                <AddButton type="submit" disabled={isValid ? '' : 'disabled'}>
+                  Submit New Event
+                </AddButton>
 
-                {innerWidth <= 830 && (
-                  <>
-                    <MapContainer>
-                      <Title>
-                        <h1>Interactive Map</h1>
-                      </Title>
-                      <Map locations={locations} />
-                    </MapContainer>
-                    <AddButton
-                      type="submit"
-                      disabled={isValid ? '' : 'disabled'}
-                    >
-                      Submit New Event
-                    </AddButton>
-                  </>
-                )}
-                {innerWidth > 830 && (
-                  <FlexContainer>
-                    <Details>
-                      <Title>
-                        <h1>Event Details</h1>
-                      </Title>
-                      <Card>
-                        <FormGroup>
-                          <TextInput
-                            type="text"
-                            className={title !== '' ? 'used' : ''}
-                            value={title}
-                            onChange={e => {
-                              setTitle(e.target.value);
-                            }}
-                            required
-                          />
-                          <Highlight />
-                          <Bar />
-                          <Label>Event Title</Label>
-                        </FormGroup>
-                        <FormGroup>
-                          <TextInput
-                            type="text"
-                            className={description !== '' ? 'used' : ''}
-                            value={description}
-                            onChange={e => {
-                              setDescription(e.target.value);
-                            }}
-                            required
-                          />
-                          <Highlight />
-                          <Bar />
-                          <Label>Brief Description</Label>
-                        </FormGroup>
-                        <FormGroup>
-                          <TextInput
-                            type="datetime-local"
-                            className={dateUsed ? '' : 'used'}
-                            color={color}
-                            onChange={e => {
-                              setStartDate(e.target.value);
-                            }}
-                            onFocus={() => {
-                              setColor('#636363');
-                            }}
-                            onBlur={() => {
-                              if (startDate === '') {
-                                setColor('transparent');
-                              }
-                            }}
-                            required
-                            value={startDate}
-                          />
-                          <Highlight />
-                          <Bar />
-                          <Label>Start Date / Time</Label>
-                        </FormGroup>
-                      </Card>
-                    </Details>
+                <Details>
+                  <Title>
+                    <h1>Event Details</h1>
+                  </Title>
+                  <Card>
+                    <FormGroup>
+                      <TextInput
+                        type="text"
+                        className={title !== '' ? 'used' : ''}
+                        value={title}
+                        onChange={e => {
+                          setTitle(e.target.value);
+                        }}
+                        required
+                      />
+                      <Highlight />
+                      <Bar />
+                      <Label>Event Title</Label>
+                    </FormGroup>
+                    <FormGroup>
+                      <TextInput
+                        type="text"
+                        className={description !== '' ? 'used' : ''}
+                        value={description}
+                        onChange={e => {
+                          setDescription(e.target.value);
+                        }}
+                        required
+                      />
+                      <Highlight />
+                      <Bar />
+                      <Label>Brief Description</Label>
+                    </FormGroup>
+                    <FormGroup>
+                      <TextInput
+                        type="datetime-local"
+                        className={dateUsed ? '' : 'used'}
+                        color={color}
+                        onChange={e => {
+                          setStartDate(e.target.value);
+                        }}
+                        onFocus={() => {
+                          setColor('#636363');
+                        }}
+                        onBlur={() => {
+                          if (startDate === '') {
+                            setColor('transparent');
+                          }
+                        }}
+                        required
+                        value={startDate}
+                      />
+                      <Highlight />
+                      <Bar />
+                      <Label>Start Date / Time</Label>
+                    </FormGroup>
+                  </Card>
+                </Details>
 
-                    <Itinerary>
-                      <Title>
-                        <h1>Route Itinerary</h1>
-                      </Title>
-                      <Card>
-                        <AutoComplete
-                          selectedLocations={locations}
-                          setSelectedLocations={setLocations}
-                        />
-                        <DraggableList
-                          items={locations}
-                          setItems={setLocations}
-                        />
-                      </Card>
-                    </Itinerary>
+                <Itinerary>
+                  <Title>
+                    <h1>Route Itinerary</h1>
+                  </Title>
+                  <Card>
+                    <AutoComplete
+                      selectedLocations={locations}
+                      setSelectedLocations={setLocations}
+                    />
+                    <DraggableList items={locations} setItems={setLocations} />
+                  </Card>
+                </Itinerary>
 
-                    <DirectionsContainer>
-                      <Title>
-                        <h1>Route Directions</h1>
-                      </Title>
-                      <Directions>
-                        <Card>
-                          {locations.length > 1 && (
-                            <Box id="directionsItinerary" />
-                          )}
-                          {locations.length <= 1 && (
-                            <h4>Locations required to calculate route</h4>
-                          )}
-                        </Card>
-                      </Directions>
-                    </DirectionsContainer>
-                  </FlexContainer>
-                )}
-
-                {innerWidth <= 830 && (
-                  <>
-                    <Details>
-                      <Title>
-                        <h1>Event Details</h1>
-                      </Title>
-                      <Card>
-                        <FormGroup>
-                          <TextInput
-                            type="text"
-                            className={title !== '' ? 'used' : ''}
-                            value={title}
-                            onChange={e => {
-                              setTitle(e.target.value);
-                            }}
-                            required
-                          />
-                          <Highlight />
-                          <Bar />
-                          <Label>Event Title</Label>
-                        </FormGroup>
-                        <FormGroup>
-                          <TextInput
-                            type="text"
-                            className={description !== '' ? 'used' : ''}
-                            value={description}
-                            onChange={e => {
-                              setDescription(e.target.value);
-                            }}
-                            required
-                          />
-                          <Highlight />
-                          <Bar />
-                          <Label>Brief Description</Label>
-                        </FormGroup>
-                        <FormGroup>
-                          <TextInput
-                            type="datetime-local"
-                            className={dateUsed ? '' : 'used'}
-                            color={color}
-                            onChange={e => {
-                              setStartDate(e.target.value);
-                            }}
-                            onFocus={() => {
-                              setColor('#636363');
-                            }}
-                            onBlur={() => {
-                              if (startDate === '') {
-                                setColor('transparent');
-                              }
-                            }}
-                            required
-                            value={startDate}
-                          />
-                          <Highlight />
-                          <Bar />
-                          <Label>Start Date / Time</Label>
-                        </FormGroup>
-                      </Card>
-                    </Details>
-
-                    <Itinerary>
-                      <Title>
-                        <h1>Route Itinerary</h1>
-                      </Title>
-                      <Card>
-                        <AutoComplete
-                          selectedLocations={locations}
-                          setSelectedLocations={setLocations}
-                        />
-                        <DraggableList
-                          items={locations}
-                          setItems={setLocations}
-                        />
-                      </Card>
-                    </Itinerary>
-
-                    <DirectionsContainer>
-                      <Title>
-                        <h1>Route Directions</h1>
-                      </Title>
-                      <Directions>
-                        <Card>
-                          {locations.length > 1 && (
-                            <Box id="directionsItinerary" />
-                          )}
-                          {locations.length <= 1 && (
-                            <h4>Locations required to calculate route</h4>
-                          )}
-                        </Card>
-                      </Directions>
-                    </DirectionsContainer>
-                  </>
-                )}
+                <DirectionsContainer>
+                  <Title>
+                    <h1>Route Directions</h1>
+                  </Title>
+                  <Directions>
+                    <Card>
+                      {locations.length > 1 && <Box id="directionsItinerary" />}
+                      {locations.length <= 1 && (
+                        <h4>Locations required to calculate route</h4>
+                      )}
+                    </Card>
+                  </Directions>
+                </DirectionsContainer>
               </AddEventContainer>
             </form>
           );

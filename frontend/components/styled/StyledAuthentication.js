@@ -28,16 +28,17 @@ export const LoggedInContainer = styled.div`
 `;
 
 export const LogOutButton = styled.button`
-  padding: 0;
+  padding: ${props => (props.side ? '5px' : '0')};
   border: none;
-  font: inherit;
-  color: inherit;
+  color: ${props => (props.side ? '#ffffff' : '#111111')};
+  text-align: ${props => (props.side ? 'left' : 'center')};
   background-color: transparent;
   cursor: pointer;
   margin: 8px 0 0 0;
-  font-size: 1.2rem;
+  font-weight: ${props => (props.side ? '300' : '400')};
+  font-size: ${props => (props.side ? '1.4rem' : '1.2rem')};
   :hover {
-    background: lightgray;
+    background: ${props => (props.side ? '#4a89dc' : 'lightgrey')};
     cursor: pointer;
   }
   i {

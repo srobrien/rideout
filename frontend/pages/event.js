@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Router, { withRouter } from 'next/router';
+import PropTypes from 'prop-types';
+
 import { AuthContext } from '../components/context/Auth';
 import SingleEvent from '../components/SingleEvent';
 
@@ -21,3 +23,7 @@ const EventPage = ({ query }) => {
 };
 
 export default withRouter(EventPage);
+
+EventPage.propTypes = {
+  query: PropTypes.string,
+};

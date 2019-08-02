@@ -13,6 +13,7 @@ import {
   MenuBurger,
 } from './styled/StyledMenuBar';
 import StyledBurger from './styled/StyledBurger';
+import SideBar from './SideBar';
 
 const MenuBar = () => {
   const user = useContext(AuthContext) || {};
@@ -36,49 +37,51 @@ const MenuBar = () => {
   }, [scroll]);
 
   return (
-    <StyledMenuBar scroll={scroll}>
-      <Logo>
-        <Link href="/">
-          <a>
-            <i className="fas fa-road fa-2x" />
-            <h1>RideOut</h1>
-          </a>
-        </Link>
-      </Logo>
+    <>
+      <StyledMenuBar scroll={scroll}>
+        <Logo>
+          <Link href="/">
+            <a>
+              <i className="fas fa-road fa-2x" />
+              <h1>RideOut</h1>
+            </a>
+          </Link>
+        </Logo>
 
-      <Spacer />
+        <Spacer />
 
-      <MenuBurger>
-        <StyledBurger isOpen={isOpen} setIsOpen={setIsOpen} />
-      </MenuBurger>
+        <MenuBurger>
+          <SideBar isOpen={isOpen} user={user} />
+          <StyledBurger isOpen={isOpen} setIsOpen={setIsOpen} />
+        </MenuBurger>
 
-      <Menu>
-        <Link href="/">
-          <h3>RideOuts</h3>
-        </Link>
-        <Link href="/addevent">
-          <h3>New Event</h3>
-        </Link>
-        <UserButton>
-          <img
-            style={{ width: '40px', height: '40px', borderRadius: '50%' }}
-            src={user.photo}
-            alt={user ? user.firstName : 'placeholder image'}
-          />
-          <DropMenu>
-            <Triangle />
-            <ul>
-              <Link href="/useradmin">
-                <li>My Account</li>
-              </Link>
-              <Link href="/logout">
+        <Menu>
+          <Link href="/">
+            <h3>RideOuts</h3>
+          </Link>
+          <Link href="/addevent" prefetch>
+            <h3>New Event</h3>
+          </Link>
+          <UserButton>
+            <img
+              style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+              src={user.photo}
+              alt={user ? user.firstName : 'placeholder image'}
+            />
+            <DropMenu>
+              <Triangle />
+              <ul>
+                <Link href="/useradmin">
+                  <li>My Account</li>
+                </Link>
+
                 <LogOut />
-              </Link>
-            </ul>
-          </DropMenu>
-        </UserButton>
-      </Menu>
-    </StyledMenuBar>
+              </ul>
+            </DropMenu>
+          </UserButton>
+        </Menu>
+      </StyledMenuBar>
+    </>
   );
 };
 
