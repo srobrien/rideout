@@ -109,7 +109,6 @@ const AddEvent = () => {
                       <TextInput
                         type="text"
                         className={title !== '' ? 'used' : ''}
-                        value={title}
                         onChange={e => {
                           setTitle(e.target.value);
                         }}

@@ -84,7 +84,7 @@ export const MessageBar = styled.input`
   color: #111111;
   border-bottom: 2px solid #3160b6;
   background: #ececec;
-  :focus {
+  &:focus {
     outline: none;
   }
 `;
@@ -95,4 +95,7 @@ export const ButtonArea = styled.div`
 
 export const PostButton = styled(SubmitButton)`
   margin: 0;
+  &:disabled {
+    border-bottom: 2px solid #3160b6;
+  }
 `;
