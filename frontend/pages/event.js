@@ -25,5 +25,5 @@ const EventPage = ({ query }) => {
 export default withRouter(EventPage);
 
 EventPage.propTypes = {
-  query: PropTypes.string,
+  query: PropTypes.object,
 };

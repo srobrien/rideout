@@ -13,7 +13,6 @@ import {
 
 const Activity = () => {
   const { events, attending } = useContext(AuthContext);
-
   return (
     <ActivityContainer>
       <Heading>
@@ -21,6 +20,11 @@ const Activity = () => {
       </Heading>
       <Activites>
         <LeadingEvents>
+          {events.length === 0 && attending.length === 0 && (
+            <Event>
+              <h4>No Current Events!</h4>
+            </Event>
+          )}
           {events.map(e => (
             <Link key={e.id} href={{ pathname: '/event', query: { id: e.id } }}>
               <Event>

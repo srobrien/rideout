@@ -19,7 +19,6 @@ const MenuBar = () => {
   const user = useContext(AuthContext) || {};
   const [scroll, setScroll] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
   const checkScroll = () => {
     if (window.scrollY > 40) {
       setScroll(true);

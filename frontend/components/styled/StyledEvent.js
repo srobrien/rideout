@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { SubmitButton } from './StyledForm';
 
 export const PageContainer = styled.div`
+  @media screen and (max-width: 820px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content) auto;
+    grid-template-areas: 'Details' 'Attendees' 'MapContainer' 'DirectionsContainer' 'Chat';
+    grid-row-gap: 20px;
+  }
   margin-top: 20px;
   height: 100%;
   display: grid;
@@ -32,7 +38,12 @@ export const Directions = styled.div`
 
 export const Attendees = styled.div`
   grid-area: Attendees;
+  @media screen and (max-width: 820px) {
+    min-height: 0;
+  }
   min-height: 200px;
+  max-height: 300px;
+
   h4 {
     margin: 0 0 60px 0;
     color: #111111;
@@ -54,7 +65,6 @@ export const Card = styled.div`
   background-color: #f9f9f9;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   padding: 20px 5px 5px 5px;
-  margin: 0 0 20px 0;
 `;
 
 export const DetailSet = styled.div`
@@ -116,6 +126,7 @@ export const StyledJoinButton = styled(SubmitButton)`
 export const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
+
   h4 {
     color: #111111;
     margin-right: 10px;
@@ -124,8 +135,12 @@ export const DetailsContainer = styled.div`
 
 export const AttendeeListContainer = styled.div`
   width: 100%;
+  max-height: 200px;
+  overflow: scroll;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, 150px);
+  align-items: stretch;
 `;
 
 export const AttendeeListItem = styled.div`
@@ -133,6 +148,9 @@ export const AttendeeListItem = styled.div`
   align-items: center;
   margin: 0 0 15px 5px;
   h4 {
+    white-space: nowrap;
     margin: 0 0 3px 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 `;
