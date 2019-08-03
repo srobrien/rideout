@@ -1,4 +1,5 @@
-endpoint: ${env:PRISMA_ENDPOINT}
+#endpoint: ${env:PRISMA_ENDPOINT}
+endpoint: https://rideout-prod-9d760fee20.herokuapp.com/rideout-backend/prod
 datamodel: datamodel.graphql
 disableAuth: true
 hooks:
