@@ -25,7 +25,6 @@ import {
   Attendees,
   AttendeeListContainer,
   AttendeeListItem,
-  FlexContainer,
 } from './styled/StyledEvent';
 
 const SingleEvent = ({ id }) => {
@@ -140,6 +139,7 @@ const SingleEvent = ({ id }) => {
                 </Title>
                 <Card>
                   <AttendeeListContainer>
+                    {attendees.length === 0 && <h4>No Members Yet!</h4>}
                     {attendees.map(attendee => (
                       <AttendeeListItem key={attendee.id}>
                         <img

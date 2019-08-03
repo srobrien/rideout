@@ -23,8 +23,7 @@ export const LoggedInContainer = styled.div`
   background-size: cover;
   background-attachment: fixed;
   position: relative;
-  padding-bottom: 30px;
-  min-height: 100vh;
+  height: 100%;
 `;
 
 export const LogOutButton = styled.button`

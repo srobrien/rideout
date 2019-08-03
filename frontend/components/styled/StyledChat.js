@@ -3,9 +3,6 @@ import { SubmitButton } from './StyledForm';
 
 export const Container = styled.div`
   grid-area: Chat;
-  @media (max-width: 830px) {
-    margin: 20px 0 0 0;
-  }
 `;
 
 export const Card = styled.div`

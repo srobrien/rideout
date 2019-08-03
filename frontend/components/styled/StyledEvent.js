@@ -2,75 +2,27 @@ import styled from 'styled-components';
 import { SubmitButton } from './StyledForm';
 
 export const PageContainer = styled.div`
-  @media (max-width: 830px) {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, max-content);
-    grid-template-areas: 'Details' 'Attendees' 'DirectionsContainer' 'MapContainer' 'Chat';
-    padding: 0 15px 0 15px;
-  }
-  @media (max-width: 400px) {
-    padding: 2px;
-  }
-
-  padding: 0 25px 0 25px;
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  grid-column-gap: 30px;
-`;
-
-export const AddEventContainer = styled.div`
-  @media (max-width: 830px) {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(5, max-content);
-    grid-template-areas: 'Details' 'Itinerary' 'DirectionsContainer' 'MapContainer' 'AddButton';
-    padding: 0 15px 0 15px;
-  }
-  @media (max-width: 400px) {
-    padding: 2px;
-  }
+  margin-top: 20px;
   height: 100%;
-  overflow: hidden;
-  padding: 0 25px 0 25px;
-  margin-top: 30px;
   display: grid;
   grid-template-columns: 1.5fr 1fr;
-  grid-column-gap: 30px;
-`;
-
-export const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  grid-template-rows: repeat(2, min-content) auto;
+  grid-template-areas: 'Chat Details' 'Chat Attendees' 'MapContainer DirectionsContainer ';
+  padding: 1rem;
+  overflow: hidden;
+  grid-column-gap: 20px;
 `;
 
 export const MapContainer = styled.div`
   grid-area: MapContainer;
-  @media (max-width: 830px) {
-    margin: 20px 0 0 0;
-  }
-  margin-bottom: 30px;
 `;
 
 export const Details = styled.div`
-  @media (max-width: 830px) {
-    margin-bottom: 0;
-  }
   grid-area: Details;
-  margin-bottom: 10px;
 `;
 
 export const DirectionsContainer = styled.div`
   grid-area: DirectionsContainer;
-  @media (max-width: 830px) {
-    margin-bottom: 0;
-  }
-  margin-bottom: 30px;
-`;
-
-export const Itinerary = styled.div`
-  grid-area: Itinerary;
 `;
 
 export const Directions = styled.div`
@@ -79,11 +31,12 @@ export const Directions = styled.div`
 `;
 
 export const Attendees = styled.div`
-  @media (max-width: 830px) {
-    margin-bottom: 0;
-  }
   grid-area: Attendees;
-  margin-bottom: 30px;
+  min-height: 200px;
+  h4 {
+    margin: 0 0 60px 0;
+    color: #111111;
+  }
 `;
 
 export const Title = styled.div`

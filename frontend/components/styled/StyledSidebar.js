@@ -6,13 +6,14 @@ export const SidebarContainer = styled.div`
   left: ${props => (props.isOpen ? '0' : '-80%')};
   height: 100%;
   width: 80%;
-  background: rgba(24, 40, 72, 0.8);
+  background: rgba(24, 40, 72, 0.9);
   z-index: 100;
   transition: all 0.4s ease-in-out;
   padding: 15px;
 `;
 
 export const SidebarContents = styled.div`
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   a {
