@@ -30,7 +30,8 @@ server.start(
   {
     cors: {
       credentials: true,
-      origin: process.env.FRONTEND_URL,
+      origin: false,
+      // origin: process.env.FRONTEND_URL,
     },
   },
   s => {
