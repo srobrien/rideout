@@ -18,10 +18,7 @@ server.express.use((req, res, next) => {
 
 server.express.use(async (req, res, next) => {
   if (!req.userId) return next();
-  const user = await db.query.user(
-    { where: { id: req.userId } },
-    '{id, email, firstName, lastName}'
-  );
+  const user = await db.query.user({ where: { id: req.userId } }, '{id}');
   req.user = user;
   next();
 });
@@ -30,11 +27,10 @@ server.start(
   {
     cors: {
       credentials: true,
-      origin: false,
-      // origin: process.env.FRONTEND_URL,
+      origin: process.env.FRONTEND_URL,
     },
   },
-  s => {
-    console.log(`Server is now live on http://localhost:${s.port}`);
+  () => {
+    console.log('Server now live!');
   }
 );

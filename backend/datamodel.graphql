@@ -22,7 +22,6 @@ type Event {
   comments: [Comment]
   updatedAt: DateTime! @updatedAt
   createdAt: DateTime! @createdAt
-
 }
 
 type Location {

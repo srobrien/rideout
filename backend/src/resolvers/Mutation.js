@@ -3,10 +3,6 @@ const jwt = require('jsonwebtoken');
 const axios = require('axios');
 
 const Mutation = {
-  /**
-   * User control mutations
-   */
-
   async signUp(parent, args, ctx, info) {
     const email = args.email.toLowerCase();
     args.email = email;
@@ -90,10 +86,6 @@ const Mutation = {
     );
     return updatedUser;
   },
-
-  /**
-   * Event control mutations
-   */
 
   async createEvent(parent, args, ctx, info) {
     const { title, description, locations, startDate } = args;

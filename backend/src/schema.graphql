@@ -1,5 +1,4 @@
 # import * from './generated/prisma.graphql'
-
 input Locations {
   description: String!
 }
@@ -12,7 +11,6 @@ type Mutation {
   createComment(id: ID!, comment: String!): Comment!,
   createEvent(title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
   addAttendee(id: ID!): Event!
-
 }
 
 type Query {
