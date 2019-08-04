@@ -29,8 +29,11 @@ server.start(
       credentials: true,
       origin: process.env.FRONTEND_URL,
     },
+    subscriptions: {
+      keepAlive: true,
+    },
   },
-  () => {
-    console.log('Server now live!');
+  s => {
+    console.log(s);
   }
 );
