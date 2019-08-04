@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:700&display=swap');
 
-
-
 * { box-sizing:border-box; }
 
 body {
@@ -21,10 +19,7 @@ h4 { color: #4a89dc; font-weight: 300}
 input[type="date" i], input[type="datetime-local" i], input[type="month" i], input[type="time" i], input[type="week" i] {
   	font-family: Helvetica;
   -webkit-font-smoothing: antialiased;
-
 }
-
-
 
 .style-unordered-list {
   padding: 0;
