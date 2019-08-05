@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { BING_KEY } from '../config';
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -30,7 +31,7 @@ export default class MyDocument extends Document {
 
           <script
             type="text/javascript"
-            src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AksOASfzdybmndjlOxhWnhZaNtzG5CMgqUFIgB5Ji8W6Gr748WQL5mijk5w4OmDD"
+            src={`http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=${BING_KEY}`}
           />
         </Head>
         <body>

@@ -10,7 +10,14 @@ const NEW_EVENT = gql`
       locations {
         description
       }
+      attendees {
+        id
+        firstName
+        lastName
+        photo
+      }
       leader {
+        id
         firstName
         lastName
         photo

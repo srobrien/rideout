@@ -1,6 +1,30 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const axios = require('axios');
+const { addFragmentToInfo } = require('graphql-binding');
+
+const eventFragment = `
+fragment EventsWithRelations on Event {
+   id
+    title
+    startDate
+    description
+    locations {
+      description
+    }
+    attendees {
+      id
+      firstName
+      lastName
+      photo
+    }
+    leader  {
+      id
+      firstName
+      lastName
+      photo
+    }
+  }
+`;
 
 const Mutation = {
   async signUp(parent, args, ctx, info) {
@@ -91,7 +115,7 @@ const Mutation = {
     const { title, description, locations, startDate } = args;
     const { userId } = ctx.request;
 
-    const newEvent = ctx.db.mutation.createEvent(
+    const newEvent = await ctx.db.mutation.createEvent(
       {
         data: {
           title,
@@ -105,8 +129,7 @@ const Mutation = {
           },
         },
       },
-
-      info
+      addFragmentToInfo(info, eventFragment)
     );
     ctx.pubsub.publish('NEW_EVENT', { newEvent });
     return newEvent;

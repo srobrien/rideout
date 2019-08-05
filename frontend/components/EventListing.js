@@ -14,8 +14,9 @@ export default class EventListing extends Component {
         if (!subscriptionData.data.newEvent) {
           return prev;
         }
+        console.log(subscriptionData.data.newEvent);
         return {
-          events: [...prev.events, subscriptionData.data.newEvent],
+          events: [subscriptionData.data.newEvent, ...prev.events],
         };
       },
     });

@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import AppLayout from './AppLayout';
 import Events from './Events';
 
-const HomePage = ({ page }) => (
+const HomePage = () => (
   <AppLayout>
-    <Events page={page} />
+    <Events />
   </AppLayout>
 );
-
-HomePage.propTypes = {
-  page: PropTypes.number,
-};
 
 export default HomePage;

@@ -22,29 +22,29 @@ const CURRENT_USER_QUERY = gql`
 `;
 
 const ALL_EVENTS_QUERY = gql`
-query ALL_EVENTS_QUERY($skip: Int = 0, $first: Int = ${EVENTS_PER_PAGE}) {
-  events(first: $first, skip: $skip, orderBy: createdAt_DESC) {
-    id
-    title
-    startDate
-    description
-    locations {
+  query ALL_EVENTS_QUERY {
+    events(orderBy: createdAt_DESC) {
+      id
+      title
+      startDate
       description
-    }
-    attendees {
-      id
-      firstName
-      lastName
-      photo
-    }
-    leader  {
-      id
-      firstName
-      lastName
-      photo
+      locations {
+        description
+      }
+      attendees {
+        id
+        firstName
+        lastName
+        photo
+      }
+      leader {
+        id
+        firstName
+        lastName
+        photo
+      }
     }
   }
-}
 `;
 
 const FILTERED_EVENTS_QUERY = gql`
@@ -133,3 +133,29 @@ export {
   GET_SINGLE_EVENT,
   GET_COMMENTS,
 };
+
+// const ALL_EVENTS_QUERY = gql`
+// query ALL_EVENTS_QUERY($skip: Int = 0, $first: Int = ${EVENTS_PER_PAGE}) {
+//   events(first: $first, skip: $skip, orderBy: createdAt_DESC) {
+//     id
+//     title
+//     startDate
+//     description
+//     locations {
+//       description
+//     }
+//     attendees {
+//       id
+//       firstName
+//       lastName
+//       photo
+//     }
+//     leader  {
+//       id
+//       firstName
+//       lastName
+//       photo
+//     }
+//   }
+// }
+// `;

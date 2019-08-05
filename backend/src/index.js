@@ -18,7 +18,10 @@ server.express.use((req, res, next) => {
 
 server.express.use(async (req, res, next) => {
   if (!req.userId) return next();
-  const user = await db.query.user({ where: { id: req.userId } }, '{id}');
+  const user = await db.query.user(
+    { where: { id: req.userId } },
+    '{id, firstName, lastName, email}'
+  );
   req.user = user;
   next();
 });
@@ -34,6 +37,6 @@ server.start(
     },
   },
   s => {
-    console.log(s);
+    console.log('Server running!');
   }
 );
