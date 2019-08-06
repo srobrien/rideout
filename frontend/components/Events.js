@@ -6,7 +6,7 @@ import { ALL_EVENTS_QUERY, FILTERED_EVENTS_QUERY } from '../graphql/Query';
 import { EVENTS_PER_PAGE } from '../config';
 import Activity from './Activity';
 import EventListing from './EventListing';
-import { Loader } from './styled/StyledLoader';
+import { Loader, LoaderContainer } from './styled/StyledLoader';
 import {
   Container,
   LSpacer,
@@ -30,7 +30,11 @@ const Events = ({ page }) => {
       >
         {({ data, loading, subscribeToMore }) => {
           if (loading) {
-            return <Loader />;
+            return (
+              <LoaderContainer>
+                <Loader />
+              </LoaderContainer>
+            );
           }
 
           return (
@@ -66,7 +70,11 @@ const Events = ({ page }) => {
     >
       {({ data, loading, subscribeToMore }) => {
         if (loading) {
-          return <Loader />;
+          return (
+            <LoaderContainer>
+              <Loader />
+            </LoaderContainer>
+          );
         }
 
         return (

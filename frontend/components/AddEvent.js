@@ -15,8 +15,8 @@ import {
   Label,
 } from './styled/StyledForm';
 import {
-  AddEventContainer,
   Title,
+  PageContainer,
   MapContainer,
   Itinerary,
   Card,
@@ -25,6 +25,7 @@ import {
   Directions,
   Box,
   AddButton,
+  ButtonContainer,
 } from './styled/StyledAddEvent';
 import { Loader } from './styled/StyledLoader';
 
@@ -32,9 +33,12 @@ const AddEvent = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
+  const [startTime, setStartTime] = useState('');
   const [locations, setLocations] = useState([]);
-  const [color, setColor] = useState('transparent');
+  const [dateColor, setDateColor] = useState('transparent');
+  const [timeColor, setTimeColor] = useState('transparent');
   const [dateUsed, setDateUsed] = useState('false');
+  const [timeUsed, setTimeUsed] = useState('false');
   const [isValid, setIsValid] = useState(true);
   const [sanitisedLocations, setSanitisedLocations] = useState([]);
 
@@ -45,13 +49,20 @@ const AddEvent = () => {
   }, [startDate]);
 
   useEffect(() => {
+    if (startTime !== '') {
+      setTimeUsed(false);
+    }
+  }, [startTime]);
+
+  useEffect(() => {
     setIsValid(
       title !== '' &&
         description !== '' &&
         startDate !== '' &&
+        startTime !== '' &&
         locations.length > 0
     );
-  }, [description, locations, startDate, title]);
+  }, [description, locations, startDate, startTime, title]);
 
   const getLocationDescriptions = async () => {
     const newLocations = locations.map(location => ({
@@ -71,7 +82,7 @@ const AddEvent = () => {
         variables={{
           title,
           description,
-          startDate,
+          startDate: `${startDate}T${startTime}`,
           locations: sanitisedLocations,
         }}
         onCompleted={() => Router.push('/')}
@@ -89,16 +100,21 @@ const AddEvent = () => {
                 await createEvent();
               }}
             >
-              <AddEventContainer>
+              <PageContainer>
                 <MapContainer>
                   <Title>
                     <h1>Interactive Map</h1>
                   </Title>
                   <Map locations={locations} />
+                  <ButtonContainer>
+                    <AddButton
+                      type="submit"
+                      disabled={isValid ? '' : 'disabled'}
+                    >
+                      Submit New Event
+                    </AddButton>
+                  </ButtonContainer>
                 </MapContainer>
-                <AddButton type="submit" disabled={isValid ? '' : 'disabled'}>
-                  Submit New Event
-                </AddButton>
 
                 <Details>
                   <Title>
@@ -134,18 +150,18 @@ const AddEvent = () => {
                     </FormGroup>
                     <FormGroup>
                       <TextInput
-                        type="datetime-local"
+                        type="date"
                         className={dateUsed ? '' : 'used'}
-                        color={color}
+                        color={dateColor}
                         onChange={e => {
                           setStartDate(e.target.value);
                         }}
                         onFocus={() => {
-                          setColor('#636363');
+                          setDateColor('#636363');
                         }}
                         onBlur={() => {
                           if (startDate === '') {
-                            setColor('transparent');
+                            setDateColor('transparent');
                           }
                         }}
                         required
@@ -153,7 +169,31 @@ const AddEvent = () => {
                       />
                       <Highlight />
                       <Bar />
-                      <Label>Start Date / Time</Label>
+                      <Label>Start Date</Label>
+                    </FormGroup>
+
+                    <FormGroup>
+                      <TextInput
+                        type="time"
+                        className={timeUsed ? '' : 'used'}
+                        color={timeColor}
+                        onChange={e => {
+                          setStartTime(e.target.value);
+                        }}
+                        onFocus={() => {
+                          setTimeColor('#636363');
+                        }}
+                        onBlur={() => {
+                          if (startTime === '') {
+                            setTimeColor('transparent');
+                          }
+                        }}
+                        required
+                        value={startTime}
+                      />
+                      <Highlight />
+                      <Bar />
+                      <Label>Meeting Time</Label>
                     </FormGroup>
                   </Card>
                 </Details>
@@ -184,7 +224,7 @@ const AddEvent = () => {
                     </Card>
                   </Directions>
                 </DirectionsContainer>
-              </AddEventContainer>
+              </PageContainer>
             </form>
           );
         }}

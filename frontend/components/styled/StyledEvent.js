@@ -16,7 +16,7 @@ export const PageContainer = styled.div`
   grid-template-areas: 'Chat Details' 'Chat Attendees' 'MapContainer DirectionsContainer ';
   padding: 1rem;
   overflow: hidden;
-  grid-column-gap: 20px;
+  grid-gap: 20px;
 `;
 
 export const MapContainer = styled.div`

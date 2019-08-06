@@ -5,7 +5,7 @@ export const StyledMenuBar = styled.div`
     grid-template-areas: 'Logo Spacer MenuBurger';
   }
   display: grid;
-  grid-template-columns: max-content auto min-content;
+  grid-template-columns: 200px auto min-content;
   grid-template-areas: 'Logo Spacer Menu';
   padding: 10px;
   z-index: 5;
@@ -25,19 +25,26 @@ export const Logo = styled.div`
   @media (max-width: 680px) {
     margin: 10px 0 0 0;
   }
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
   grid-area: Logo;
   min-width: 180px;
-  margin: 10px 0 0 34px;
+  margin: 0 0 0 34px;
   h1 {
-    margin-top: 0;
+    margin: 0;
     font-size: 2rem;
     color: #ffffff;
     font-weight: 300;
+    line-height: 32px;
   }
+
   i {
-    float: left;
+    line-height: 32px;
     color: #ffffff;
-    margin: 2px 5px 0 0;
+    margin: 0 5px 0 0;
+    margin-bottom: ${props => (props.browser === 'firefox' ? '6px' : '2px')};
   }
   a {
     text-decoration: none;

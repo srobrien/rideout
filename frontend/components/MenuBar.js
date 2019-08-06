@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Link from 'next/link';
+import { detect } from 'detect-browser';
 import { AuthContext } from './context/Auth';
 import LogOut from './LogOut';
 import {
@@ -27,6 +28,9 @@ const MenuBar = () => {
     }
   };
 
+  const browser = detect();
+  console.log(browser.name);
+
   useEffect(() => {
     document.addEventListener('scroll', checkScroll);
 
@@ -38,10 +42,12 @@ const MenuBar = () => {
   return (
     <>
       <StyledMenuBar scroll={scroll}>
-        <Logo>
+        <Logo browser={browser.name}>
+          <div>
+            <i className="fas fa-road fa-2x" />
+          </div>
           <Link href="/">
             <a>
-              <i className="fas fa-road fa-2x" />
               <h1>RideOut</h1>
             </a>
           </Link>

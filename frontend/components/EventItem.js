@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import format from 'date-fns/format';
 import PropTypes from 'prop-types';
+import formatDate from '../lib/formattedDate';
+
 import {
   EventContainer,
   EventTitle,
@@ -18,16 +19,25 @@ import { AuthContext } from './context/Auth';
 const EventItem = ({ event }) => {
   const user = useContext(AuthContext);
   const isEventLeader = event.leader.id === user.id;
-
+  const {
+    id,
+    title,
+    leader,
+    startDate,
+    locations,
+    attendees,
+    description,
+  } = event;
+  const { date, time } = formatDate(startDate);
   return (
     <EventContainer>
       <EventTitle>
-        <h1>{event.title}</h1>
+        <h1>{title}</h1>
       </EventTitle>
       <Details>
         <img
-          src={event.leader.photo || './static/user.jpg'}
-          alt={event.leader.firstName || 'a user'}
+          src={leader.photo || './static/user.jpg'}
+          alt={leader.firstName || 'a user'}
           style={{
             width: '45px',
             height: '45px',
@@ -38,22 +48,22 @@ const EventItem = ({ event }) => {
         />
 
         <h4>
-          Group Leader: {event.leader.firstName} {event.leader.lastName}
+          Group Leader: {leader.firstName} {leader.lastName}
         </h4>
       </Details>
 
       <DateInfo>
         <i className="far fa-calendar-alt" />
-        <h4>{format(event.startDate, ' ddd Do MMMM YYYY')}</h4>
+        <h4>{date}</h4>
         <i className="far fa-clock" />
-        <h4>{format(event.startDate, 'HH:mm')}</h4>
+        <h4>{time}</h4>
         <i className="fas fa-map-marker-alt" />
-        <h4>{event.locations[0].description}</h4>
+        <h4>{locations[0].description}</h4>
       </DateInfo>
 
       <Attendees>
-        {event.attendees.length === 0 && <h4>No members yet!</h4>}
-        {event.attendees.map(attendee => (
+        {attendees.length === 0 && <h4>No members yet!</h4>}
+        {attendees.map(attendee => (
           <img
             key={attendee.id}
             src={attendee.photo ? attendee.photo : './static/user.jpg'}
@@ -70,12 +80,12 @@ const EventItem = ({ event }) => {
         ))}
       </Attendees>
       <Description>
-        <p>{event.description}</p>
+        <p>{description}</p>
       </Description>
       <ViewButtonContainer>
         <JoinButton
-          id={event.id}
-          attendees={event.attendees}
+          id={id}
+          attendees={attendees}
           grid="span 2"
           leader={isEventLeader}
         />

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Query } from 'react-apollo';
 import PropTypes from 'prop-types';
-import format from 'date-fns/format';
+import formatDate from '../lib/formattedDate';
 import { AuthContext } from './context/Auth';
 import { GET_SINGLE_EVENT } from '../graphql/Query';
 import { Loader } from './styled/StyledLoader';
@@ -50,6 +50,7 @@ const SingleEvent = ({ id }) => {
         if (loading) {
           return <Loader />;
         }
+        const { date, time } = formatDate(startDate);
 
         return (
           <AppLayout>
@@ -91,13 +92,13 @@ const SingleEvent = ({ id }) => {
                         className="far fa-calendar-alt"
                         style={{ color: '#111111', marginRight: '3px' }}
                       />
-                      <h4>{format(startDate, ' ddd Do MMMM YYYY')}</h4>
+                      <h4>{date}</h4>
 
                       <i
                         className="far fa-clock"
                         style={{ color: '#111111', marginRight: '3px' }}
                       />
-                      <h4>{format(startDate, 'HH:mm')}</h4>
+                      <h4>{time}</h4>
                     </DetailSet>
                     <DetailSet>
                       <i

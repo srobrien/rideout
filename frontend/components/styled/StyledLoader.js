@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const LoaderContainer = styled.div`
+  display: flex;
+  height: 100vh;
+`;
+
 export const Loader = styled.div`
   border-radius: 50%;
   width: 10em;
