@@ -7,10 +7,10 @@
     "dev": "next",
     "build": "next build",
     "start": "next start -p $PORT",
-    "heroku-postbuid": "next build",
+    "heroku-postbuid": "next build"
   },
   "keywords": [],
-  "author": "",§
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@svgr/webpack": "^4.3.1",
