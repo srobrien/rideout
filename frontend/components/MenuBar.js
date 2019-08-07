@@ -29,7 +29,6 @@ const MenuBar = () => {
   };
 
   const browser = detect();
-  console.log(browser.name);
 
   useEffect(() => {
     document.addEventListener('scroll', checkScroll);
