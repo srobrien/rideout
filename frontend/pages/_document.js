@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
 
           <script
             type="text/javascript"
-            src={`http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=${
+            src={`https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=${
               process.env.BING_KEY
             }`}
           />
