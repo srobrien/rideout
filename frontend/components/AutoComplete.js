@@ -25,7 +25,7 @@ const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
     }&types=geocode&language=en&key=${process.env.GOOGLE_KEY}`;
     evt.persist();
     const res = await axios.get(google);
-    console.log(res);
+
     if (res.status === 200) {
       setLocations(res.data.predictions);
     }

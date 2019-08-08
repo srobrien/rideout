@@ -141,3 +141,4 @@ backend/variables.env
 frontend/variables.env
 frontend/private_keys.txt
 frontend/now.json
+frontend/next.config.js
