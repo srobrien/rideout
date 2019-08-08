@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import uniqueId from 'lodash.uniqueid';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { PROXY, GOOGLE_KEY } from '../config';
+import { PROXY } from '../config';
 import { TextInput, Highlight, Bar, Label } from './styled/StyledForm';
 import { DropDown, DropDownItem, SearchStyles } from './styled/StyledDropDown';
 
@@ -22,9 +22,10 @@ const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
   const handleOnChange = debounce(async evt => {
     const google = `${PROXY}https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${
       evt.target.value
-    }&types=geocode&language=en&key=${process.env.GOOGLE_KEY}`;
+    }&types=geocode&language=en&key=AIzaSyCm5Lb9-viqqixp4pyQHA_Yp9jXnxDZ7bU`;
     evt.persist();
     const res = await axios.get(google);
+    console.log(res);
     if (res.status === 200) {
       setLocations(res.data.predictions);
     }

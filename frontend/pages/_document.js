@@ -1,6 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { BING_KEY } from '../config';
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
