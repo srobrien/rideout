@@ -22,7 +22,7 @@ const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
   const handleOnChange = debounce(async evt => {
     const google = `${PROXY}https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${
       evt.target.value
-    }&types=geocode&language=en&key=AIzaSyCm5Lb9-viqqixp4pyQHA_Yp9jXnxDZ7bU`;
+    }&types=geocode&language=en&key=${process.env.GOOGLE_KEY}`;
     evt.persist();
     const res = await axios.get(google);
     console.log(res);
