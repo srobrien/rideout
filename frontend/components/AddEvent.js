@@ -27,7 +27,7 @@ import {
   AddButton,
   ButtonContainer,
 } from './styled/StyledAddEvent';
-import { Loader } from './styled/StyledLoader';
+import { Loader, LoaderContainer } from './styled/StyledLoader';
 
 const AddEvent = () => {
   const [title, setTitle] = useState('');
@@ -89,7 +89,11 @@ const AddEvent = () => {
       >
         {(createEvent, { loading }) => {
           if (loading) {
-            return <Loader />;
+            return (
+              <LoaderContainer>
+                <Loader />
+              </LoaderContainer>
+            );
           }
           return (
             <form

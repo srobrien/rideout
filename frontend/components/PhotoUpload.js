@@ -22,7 +22,7 @@ const PhotoUpload = ({ setPhoto, setLoading }) => {
         }
       );
       const file = await res.json();
-      setPhoto(file.url);
+      setPhoto(file.secure_url);
       setLoading(false);
     },
     [setLoading, setPhoto]
