@@ -142,3 +142,4 @@ frontend/variables.env
 frontend/private_keys.txt
 frontend/now.json
 frontend/next.config.js
+frontend/lib/withData copy.js
