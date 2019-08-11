@@ -56,6 +56,9 @@ function createClient({ headers }) {
       'Access-Control-Allow-Headers': 'application/json',
       'Access-Control-Allow-Credentials': true,
     },
+    fetchOptions: {
+      mode: 'no-cors',
+    },
   });
 
   const wsLink = process.browser
