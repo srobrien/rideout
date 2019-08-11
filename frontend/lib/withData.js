@@ -20,7 +20,6 @@ function createClient({ headers }) {
         includeQuery: false,
       },
       fetchOptions: {
-        credentials: true,
         mode: 'no-cors',
       },
       headers,
