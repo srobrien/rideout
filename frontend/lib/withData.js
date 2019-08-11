@@ -25,7 +25,6 @@ function createClient({ headers }) {
       headers,
     });
   };
-  // testing 123
 
   const requestLink = new ApolloLink(
     (operation, forward) =>
