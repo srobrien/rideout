@@ -4,7 +4,7 @@ require('dotenv').config({ path: 'variables.env' });
 const createServer = require('./createServer');
 const db = require('./db');
 
-const server = createServer({ sameSite: 'none' });
+const server = createServer();
 server.express.use(function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -15,7 +15,7 @@ server.express.use(function(req, res, next) {
   );
   next();
 });
-server.express.use(cookieParser());
+server.express.use(cookieParser({ sameSite: 'none' }));
 server.express.use((req, res, next) => {
   const { token } = req.cookies;
   if (token) {
