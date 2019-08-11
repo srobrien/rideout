@@ -27,7 +27,6 @@ export const Details = styled.div`
   @media screen and (max-width: 820px) {
     min-height: 500px;
   }
-
 `;
 
 export const DirectionsContainer = styled.div`
