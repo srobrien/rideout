@@ -15,13 +15,12 @@ function createClient({ headers }) {
 
   const request = async operation => {
     operation.setContext({
-      credentials: 'same-origin',
       http: {
         includeExtensions: true,
         includeQuery: false,
       },
       fetchOptions: {
-        credentials: 'same-origin',
+        credentials: true,
       },
       headers,
     });
