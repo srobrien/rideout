@@ -19,13 +19,6 @@ function createClient({ headers }) {
         includeExtensions: true,
         includeQuery: false,
       },
-      headers: {
-        'Access-Control-Allow-Origin':
-          'https://rideout-app-backend.herokuapp.com/',
-        'Access-Control-Allow-Methods': 'GET POST PUT',
-        'Access-Control-Allow-Headers': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-      },
       fetchOptions: {
         credentials: 'include',
       },
@@ -56,16 +49,6 @@ function createClient({ headers }) {
 
   const httpLink = new BatchHttpLink({
     uri: endpoint,
-    headers: {
-      'Access-Control-Allow-Origin':
-        'https://rideout-app-backend.herokuapp.com/',
-      'Access-Control-Allow-Methods': 'GET POST PUT',
-      'Access-Control-Allow-Headers': 'application/json',
-      'Access-Control-Allow-Credentials': true,
-    },
-    fetchOptions: {
-      mode: 'no-cors',
-    },
   });
 
   const wsLink = process.browser
