@@ -6,7 +6,7 @@ const db = require('./db');
 
 const server = createServer();
 
-server.express.use(cookieParser());
+server.express.use(cookieParser({ sameSite: 'none' }));
 server.express.use((req, res, next) => {
   const { token } = req.cookies;
   if (token) {

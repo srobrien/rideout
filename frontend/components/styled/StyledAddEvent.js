@@ -4,7 +4,7 @@ import { SubmitButton } from './StyledForm';
 export const PageContainer = styled.div`
   @media screen and (max-width: 820px) {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: repeat(4, min-content);
     grid-template-areas: 'Details' 'Itinerary' 'DirectionsContainer' 'MapContainer';
   }
   margin-top: 20px;
@@ -61,7 +61,7 @@ export const Card = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   padding: 20px 5px 5px 5px;
   margin: 0 0 20px 0;
-  height: 100%;
+  height: 600px;
 `;
 
 export const Box = styled.div`

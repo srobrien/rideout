@@ -138,7 +138,7 @@ const AddEvent = () => {
                       <Bar />
                       <Label>Event Title</Label>
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                       <TextInput
                         type="text"
                         className={description !== '' ? 'used' : ''}
@@ -174,7 +174,7 @@ const AddEvent = () => {
                       <Highlight />
                       <Bar />
                       <Label>Start Date</Label>
-                    </FormGroup>
+                    </FormGroup> */}
 
                     <FormGroup>
                       <TextInput
