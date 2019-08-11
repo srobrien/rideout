@@ -21,6 +21,7 @@ function createClient({ headers }) {
       },
       fetchOptions: {
         credentials: true,
+        mode: 'no-cors',
       },
       headers,
     });
