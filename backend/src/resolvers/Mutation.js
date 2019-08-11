@@ -62,12 +62,9 @@ const Mutation = {
       'token',
       token,
       {
-        secure: true,
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 365,
-        domain: 'rideout.rocks',
         credentials: true,
-        origin: 'https://www.rideout.rocks',
       },
       info
     );
