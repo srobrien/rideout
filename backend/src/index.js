@@ -15,7 +15,7 @@ server.express.use(function(req, res, next) {
   );
   next();
 });
-server.express.use(cookieParser({ sameSite: 'none' }));
+server.express.use(cookieParser('abc123'));
 server.express.use((req, res, next) => {
   const { token } = req.cookies;
   if (token) {
