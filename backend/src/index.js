@@ -1,11 +1,17 @@
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: 'variables.env' });
+const cors = require('cors');
 const createServer = require('./createServer');
 const db = require('./db');
 
 const server = createServer();
-
+server.express.use(
+  cors({
+    origin: 'https://www.rideout.rocks',
+    credentials: true,
+  })
+);
 server.express.use(cookieParser('abc123'));
 server.express.use((req, res, next) => {
   const { token } = req.cookies;
