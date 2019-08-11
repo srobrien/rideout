@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import { SubmitButton } from './StyledForm';
 
 export const EventContainer = styled.div`
+  @media (max-width: 500px) {
+    grid-template: 'eventtitle eventtitle' 0.4fr 'details details' 1fr 'dateinfo dateinfo' 1fr 'attendees attendees' 0.8fr 'description button' 1.5fr / 4fr 1.2fr;
+  }
   @media (max-width: 830px) {
     margin: 30px 0 0 0;
   }
+
   display: grid;
   grid-template-columns: 4fr 1.2fr;
   grid-template-rows: 1fr 2fr 1fr 1.5fr 3fr;
@@ -28,19 +32,28 @@ export const EventTitle = styled.div`
 export const Details = styled.div`
   grid-area: details;
   display: flex;
+  flex-wrap: nowrap;
   padding: 10px 5px 5px 10px;
+  white-space: nowrap;
   h4 {
     color: #111111;
     margin-left: 10px;
+    white-space: nowrap;
   }
 `;
 
 export const DateInfo = styled.div`
   grid-area: dateinfo;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
   padding: 5px;
 
   h4 {
+    white-space: nowrap;
     color: #111111;
     margin: 0 20px 0 3px;
   }
@@ -48,6 +61,13 @@ export const DateInfo = styled.div`
     margin: 0 0 0 5px;
     color: #111111;
   }
+`;
+
+export const InfoItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0 0 8px 0;
 `;
 
 export const Attendees = styled.div`

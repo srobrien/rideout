@@ -12,6 +12,7 @@ import {
   Description,
   ViewButtonContainer,
   ViewButton,
+  InfoItem,
 } from './styled/StyledEventItem';
 import JoinButton from './JoinButton';
 import { AuthContext } from './context/Auth';
@@ -53,12 +54,18 @@ const EventItem = ({ event }) => {
       </Details>
 
       <DateInfo>
-        <i className="far fa-calendar-alt" />
-        <h4>{date}</h4>
-        <i className="far fa-clock" />
-        <h4>{time}</h4>
-        <i className="fas fa-map-marker-alt" />
-        <h4>{locations[0].description}</h4>
+        <InfoItem>
+          <i className="far fa-calendar-alt" />
+          <h4>{date}</h4>
+        </InfoItem>
+        <InfoItem>
+          <i className="far fa-clock" />
+          <h4>{time}</h4>
+        </InfoItem>
+        <InfoItem>
+          <i className="fas fa-map-marker-alt" />
+          <h4>{locations[0].description}</h4>
+        </InfoItem>
       </DateInfo>
 
       <Attendees>

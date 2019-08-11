@@ -12,8 +12,6 @@ import {
   LSpacer,
   RSpacer,
   Right,
-  SearchBar,
-  FilteredBadge,
 } from './styled/StyledEventsHomePage';
 import Filter from './Filter';
 
@@ -39,11 +37,9 @@ const Events = ({ page }) => {
 
           return (
             <Container>
-              <SearchBar>
-                <Filter setFilter={setFilter} />
-              </SearchBar>
               <LSpacer />
 
+              <Filter filter={filter} setFilter={setFilter} />
               <EventListing
                 events={data.events || []}
                 page={page}
@@ -79,18 +75,7 @@ const Events = ({ page }) => {
 
         return (
           <Container>
-            <SearchBar>
-              <Filter setFilter={setFilter} />
-              <div>
-                {filter && (
-                  <FilteredBadge onClick={() => setFilter('')}>
-                    <i className="fas fa-times" />
-                    {filter}
-                  </FilteredBadge>
-                )}
-              </div>
-            </SearchBar>
-
+            <Filter filter={filter} setFilter={setFilter} />
             <LSpacer />
 
             <EventListing
