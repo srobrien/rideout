@@ -30,7 +30,7 @@ server.start(
   {
     cors: {
       credentials: true,
-      origin: 'www.rideout.rocks',
+      origin: 'https://www.rideout.rocks',
     },
     subscriptions: {
       keepAlive: true,
