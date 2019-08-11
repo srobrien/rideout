@@ -22,14 +22,7 @@ function createClient({ headers }) {
       fetchOptions: {
         credentials: 'include',
       },
-      headers: {
-        ...headers,
-        'Access-Control-Allow-Origin':
-          'https://rideout-app-backend.herokuapp.com',
-        'Access-Control-Allow-Methods': 'GET POST PUT',
-        'Access-Control-Allow-Headers': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-      },
+      headers,
     });
   };
 
