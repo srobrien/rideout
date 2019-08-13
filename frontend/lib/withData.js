@@ -20,7 +20,7 @@ function createClient({ headers }) {
         includeQuery: false,
       },
       fetchOptions: {
-        // credentials: 'include',
+        credentials: 'include',
       },
       headers,
     });
