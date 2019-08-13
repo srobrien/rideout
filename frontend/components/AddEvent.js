@@ -179,21 +179,20 @@ const AddEvent = () => {
                     <FormGroup>
                       <TextInput
                         type="time"
-                        className={timeUsed ? '' : 'used'}
-                        color={timeColor}
+                        className={startTime !== '' ? 'used' : ''}
+                        // color={timeColor}
                         onChange={e => {
                           setStartTime(e.target.value);
                         }}
-                        onFocus={() => {
-                          setTimeColor('#636363');
-                        }}
-                        onBlur={() => {
-                          if (startTime === '') {
-                            setTimeColor('transparent');
-                          }
-                        }}
+                        // onFocus={() => {
+                        //   setTimeColor('#636363');
+                        // }}
+                        // onBlur={() => {
+                        //   if (startTime === '') {
+                        //     setTimeColor('transparent');
+                        //   }
+                        // }}
                         required
-                        value={startTime}
                       />
                       <Highlight />
                       <Bar />

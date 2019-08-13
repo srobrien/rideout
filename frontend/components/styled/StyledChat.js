@@ -21,7 +21,7 @@ export const ChatContainer = styled.div`
 export const ChatArea = styled.div`
   height: 400px;
   grid-area: ChatArea;
-  overflow: scroll;
+  overflow-background-position-y: scroll;
   padding: 10px;
   h4 {
     margin-left: 5px;

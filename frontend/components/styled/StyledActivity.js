@@ -28,7 +28,7 @@ export const Heading = styled.div`
 `;
 export const Activites = styled.div`
   grid-area: 'activites';
-  overflow: scroll;
+  overflow-y: scroll;
   h4 {
     margin: 0;
     color: #111111;

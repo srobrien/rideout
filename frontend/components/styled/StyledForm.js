@@ -100,6 +100,18 @@ export const TextInput = styled.input`
   &:focus ~ ${Highlight} {
     animation: ${inputHighlighter} 0.3s ease;
   }
+  ::-webkit-datetime-edit-ampm-field,
+  ::-webkit-datetime-edit-day-field,
+  ::-webkit-datetime-edit-hour-field,
+  ::-webkit-datetime-edit-millisecond-field,
+  ::-webkit-datetime-edit-minute-field,
+  ::-webkit-datetime-edit-month-field,
+  ::-webkit-datetime-edit-second-field,
+  ::-webkit-datetime-edit-week-field,
+  ::-webkit-datetime-edit-year-field,
+  ::-webkit-datetime-edit-text {
+    color: transparent;
+  }
 `;
 
 TextInput.defaultProps = {

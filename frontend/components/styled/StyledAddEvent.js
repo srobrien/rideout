@@ -42,7 +42,7 @@ export const Itinerary = styled.div`
 
 export const Directions = styled.div`
   max-height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const Title = styled.div`

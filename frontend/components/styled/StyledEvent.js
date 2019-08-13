@@ -33,7 +33,7 @@ export const DirectionsContainer = styled.div`
 
 export const Directions = styled.div`
   max-height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const Attendees = styled.div`
@@ -136,7 +136,7 @@ export const DetailsContainer = styled.div`
 export const AttendeeListContainer = styled.div`
   width: 100%;
   max-height: 200px;
-  overflow: scroll;
+  overflow-y: scroll;
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: repeat(auto-fill, 150px);
