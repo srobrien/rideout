@@ -6,6 +6,7 @@ export const PageContainer = styled.div`
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, min-content);
     grid-template-areas: 'Details' 'Itinerary' 'DirectionsContainer' 'MapContainer';
+    grid-row-gap: 10px;
   }
   margin-top: 20px;
   height: 100%;
@@ -20,6 +21,9 @@ export const PageContainer = styled.div`
 
 export const MapContainer = styled.div`
   grid-area: MapContainer;
+  @media screen and (max-width: 820px) {
+    margin-top: 15px;
+  }
 `;
 
 export const Details = styled.div`
@@ -28,9 +32,6 @@ export const Details = styled.div`
 
 export const DirectionsContainer = styled.div`
   grid-area: DirectionsContainer;
-  @media screen and (max-width: 820px) {
-    margin-top: 20px;
-  }
 `;
 
 export const Itinerary = styled.div`
@@ -74,6 +75,6 @@ export const AddButton = styled(SubmitButton)``;
 export const ButtonContainer = styled.div`
   grid-area: ButtonContainer;
   @media screen and (max-width: 820px) {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 `;

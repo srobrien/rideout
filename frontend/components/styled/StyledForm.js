@@ -189,7 +189,7 @@ export const Bottom = styled.div`
 
 export const DTInput = styled.input`
   font-size: 16px;
-  margin: 15px 0 0 5px;
+  margin: 20px 0 0 5px;
   padding: 2px;
 `;
 
@@ -200,7 +200,7 @@ export const DTLabel = styled.label`
   position: absolute;
   pointer-events: none;
   left: 5px;
-  top: -15px;
+  top: -10px;
 `;
 
 export const Mobile = styled.div`

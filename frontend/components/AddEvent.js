@@ -49,13 +49,13 @@ const AddEvent = () => {
 
   useEffect(() => {
     if (startDate !== '') {
-      setDateUsed(false);
+      setDateUsed(true);
     }
   }, [startDate]);
 
   useEffect(() => {
     if (startTime !== '') {
-      setTimeUsed(false);
+      setTimeUsed(true);
     }
   }, [startTime]);
 
