@@ -11,6 +11,7 @@ import { withClientState } from 'apollo-link-state';
 import { wss, endpoint } from '../config';
 
 function createClient({ headers }) {
+  console.log(headers);
   const cache = new InMemoryCache();
 
   const request = async operation => {
@@ -22,7 +23,7 @@ function createClient({ headers }) {
       fetchOptions: {
         credentials: 'include',
       },
-      headers: { cookie: headers && headers.cookie },
+      headers,
     });
   };
 
