@@ -78,6 +78,7 @@ function createClient({ headers }) {
   );
 
   return new ApolloClient({
+    credentials: 'include',
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
