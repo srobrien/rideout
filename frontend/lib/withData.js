@@ -1,6 +1,7 @@
 import { ApolloLink, Observable, split } from 'apollo-link';
 import { ApolloClient } from 'apollo-client';
 import { BatchHttpLink } from 'apollo-link-batch-http';
+import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { WebSocketLink } from 'apollo-link-ws';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
@@ -48,7 +49,7 @@ function createClient({ headers }) {
       })
   );
 
-  const httpLink = new BatchHttpLink({
+  const httpLink = createHttpLink({
     uri: endpoint,
     credentials: 'include',
   });
