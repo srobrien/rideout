@@ -11,7 +11,6 @@ import { withClientState } from 'apollo-link-state';
 import { wss, endpoint } from '../config';
 
 function createClient({ headers }) {
-  console.log(headers);
   const cache = new InMemoryCache();
 
   const request = async operation => {
@@ -50,6 +49,7 @@ function createClient({ headers }) {
 
   const httpLink = new BatchHttpLink({
     uri: endpoint,
+    credentials: 'include',
   });
 
   const wsLink = process.browser
