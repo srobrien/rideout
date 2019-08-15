@@ -186,3 +186,31 @@ export const Bottom = styled.div`
   height: 100%;
   margin-top: 40px;
 `;
+
+export const DTInput = styled.input`
+  font-size: 16px;
+  margin: 15px 0 0 5px;
+  padding: 2px;
+`;
+
+export const DTLabel = styled.label`
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: -15px;
+`;
+
+export const Mobile = styled.div`
+  @media screen and (min-width: 820px) {
+    display: none;
+  }
+`;
+
+export const Desktop = styled.div`
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
+`;

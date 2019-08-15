@@ -24,9 +24,6 @@ export const MapContainer = styled.div`
 
 export const Details = styled.div`
   grid-area: Details;
-  @media screen and (max-width: 820px) {
-    min-height: 500px;
-  }
 `;
 
 export const DirectionsContainer = styled.div`
@@ -61,7 +58,6 @@ export const Card = styled.div`
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   padding: 20px 5px 5px 5px;
   margin: 0 0 20px 0;
-  height: 600px;
 `;
 
 export const Box = styled.div`

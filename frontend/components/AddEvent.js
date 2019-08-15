@@ -13,6 +13,10 @@ import {
   Highlight,
   Bar,
   Label,
+  DTInput,
+  DTLabel,
+  Mobile,
+  Desktop,
 } from './styled/StyledForm';
 import {
   Title,
@@ -31,14 +35,15 @@ import { Loader, LoaderContainer } from './styled/StyledLoader';
 
 const AddEvent = () => {
   const [title, setTitle] = useState('');
+
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [locations, setLocations] = useState([]);
   const [dateColor, setDateColor] = useState('transparent');
   const [timeColor, setTimeColor] = useState('transparent');
-  const [dateUsed, setDateUsed] = useState('false');
-  const [timeUsed, setTimeUsed] = useState('false');
+  const [dateUsed, setDateUsed] = useState(false);
+  const [timeUsed, setTimeUsed] = useState(false);
   const [isValid, setIsValid] = useState(true);
   const [sanitisedLocations, setSanitisedLocations] = useState([]);
 
@@ -138,7 +143,7 @@ const AddEvent = () => {
                       <Bar />
                       <Label>Event Title</Label>
                     </FormGroup>
-                    {/* <FormGroup>
+                    <FormGroup>
                       <TextInput
                         type="text"
                         className={description !== '' ? 'used' : ''}
@@ -152,45 +157,72 @@ const AddEvent = () => {
                       <Bar />
                       <Label>Brief Description</Label>
                     </FormGroup>
-                    <FormGroup>
-                      <TextInput
-                        type="date"
-                        className={dateUsed ? '' : 'used'}
-                        color={dateColor}
-                        onChange={e => {
-                          setStartDate(e.target.value);
-                        }}
-                        onFocus={() => {
-                          setDateColor('#636363');
-                        }}
-                        onBlur={() => {
-                          if (startDate === '') {
-                            setDateColor('transparent');
-                          }
-                        }}
-                        required
-                        value={startDate}
-                      />
-                      <Highlight />
-                      <Bar />
-                      <Label>Start Date</Label>
-                    </FormGroup> */}
+                    <Mobile>
+                      <FormGroup>
+                        <DTLabel>Start Date / Time</DTLabel>
+                        <DTInput
+                          type="date"
+                          onChange={e => {
+                            setStartDate(e.target.value);
+                          }}
+                        />
+                        <DTInput
+                          type="time"
+                          onChange={e => {
+                            setStartTime(e.target.value);
+                          }}
+                        />
+                      </FormGroup>
+                    </Mobile>
+                    <Desktop>
+                      <FormGroup>
+                        <TextInput
+                          type="date"
+                          className={dateUsed ? 'used' : ''}
+                          color={dateColor}
+                          onChange={e => {
+                            setStartDate(e.target.value);
+                          }}
+                          onFocus={() => {
+                            setDateColor('#636363');
+                          }}
+                          onBlur={() => {
+                            if (startDate === '') {
+                              setDateColor('transparent');
+                            }
+                          }}
+                          required
+                          value={startDate}
+                        />
+                        <Highlight />
+                        <Bar />
+                        <Label>Start Date</Label>
+                      </FormGroup>
 
-                    <FormGroup>
-                      <TextInput
-                        type={timeUsed ? 'text' : 'date'}
-                        className={startTime !== '' ? 'used' : ''}
-                        onChange={e => {
-                          setStartTime(e.target.value);
-                        }}
-                        onFocus={() => setTimeUsed(false)}
-                        onBlur={() => setTimeUsed(true)}
-                        required
-                      />
-                      <Highlight />
-                      <Bar />
-                      <Label>Meeting Time</Label>
-                    </FormGroup>
+                      <FormGroup>
+                        <TextInput
+                          type="time"
+                          className={timeUsed ? 'used' : ''}
+                          color={timeColor}
+                          onChange={e => {
+                            setStartTime(e.target.value);
+                          }}
+                          onFocus={() => {
+                            setTimeColor('#636363');
+                          }}
+                          onBlur={() => {
+                            if (startTime === '') {
+                              setTimeColor('transparent');
+                            }
+                          }}
+                          required
+                          value={startTime}
+                        />
+                        <Highlight />
+                        <Bar />
+                        <Label>Meeting Time</Label>
+                      </FormGroup>
+                    </Desktop>
                   </Card>
                 </Details>
 
