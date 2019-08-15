@@ -50,7 +50,6 @@ function createClient({ headers }) {
 
   const httpLink = new BatchHttpLink({
     uri: endpoint,
-    credentials: 'include',
   });
 
   const wsLink = process.browser
