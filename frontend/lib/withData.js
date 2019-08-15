@@ -1,7 +1,6 @@
 import { ApolloLink, Observable, split } from 'apollo-link';
 import { ApolloClient } from 'apollo-client';
 import { BatchHttpLink } from 'apollo-link-batch-http';
-import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { WebSocketLink } from 'apollo-link-ws';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
@@ -19,12 +18,11 @@ function createClient({ headers }) {
       http: {
         includeExtensions: true,
         includeQuery: false,
-        credentials: 'include',
       },
       fetchOptions: {
         credentials: 'include',
       },
-      headers: { cookie: headers && headers.cookie },
+      headers,
     });
   };
 
@@ -49,7 +47,7 @@ function createClient({ headers }) {
       })
   );
 
-  const httpLink = createHttpLink({
+  const httpLink = new BatchHttpLink({
     uri: endpoint,
     credentials: 'include',
   });
@@ -79,7 +77,6 @@ function createClient({ headers }) {
   );
 
   return new ApolloClient({
-    credentials: 'include',
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors) {
