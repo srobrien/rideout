@@ -18,11 +18,12 @@ function createClient({ headers }) {
       http: {
         includeExtensions: true,
         includeQuery: false,
+        credentials: 'include',
       },
       fetchOptions: {
         credentials: 'include',
       },
-      headers,
+      headers: { cookie: headers && headers.cookie },
     });
   };
 
@@ -49,6 +50,7 @@ function createClient({ headers }) {
 
   const httpLink = new BatchHttpLink({
     uri: endpoint,
+    credentials: 'include',
   });
 
   const wsLink = process.browser
