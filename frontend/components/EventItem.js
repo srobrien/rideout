@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import formatDate from '../lib/formattedDate';
-
+import isEventLeader from '../lib/isEventLeader';
 import {
   EventContainer,
   EventTitle,
@@ -19,7 +19,7 @@ import { AuthContext } from './context/Auth';
 
 const EventItem = ({ event }) => {
   const user = useContext(AuthContext);
-  const isEventLeader = event.leader.id === user.id;
+  const eventLeader = isEventLeader(event.leader.id, user.id);
   const {
     id,
     title,
@@ -94,7 +94,7 @@ const EventItem = ({ event }) => {
           id={id}
           attendees={attendees}
           grid="span 2"
-          leader={isEventLeader}
+          leader={eventLeader}
         />
 
         <Link href={{ pathname: '/event', query: { id: event.id } }}>

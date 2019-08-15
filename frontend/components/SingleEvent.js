@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import formatDate from '../lib/formattedDate';
 import { AuthContext } from './context/Auth';
 import { GET_SINGLE_EVENT } from '../graphql/Query';
+import isEventLeader from '../lib/isEventLeader';
 import { Loader } from './styled/StyledLoader';
 import AppLayout from './AppLayout';
 import Map from './Map';
 import JoinButton from './JoinButton';
+import EditButton from './EditButton';
 import Chat from './Chat';
 import {
   PageContainer,
@@ -42,10 +44,7 @@ const SingleEvent = ({ id }) => {
           attendees,
         } = data.event;
 
-        let isEventLeader = false;
-        if (user) {
-          isEventLeader = leader.id === user.id;
-        }
+        const eventLeader = isEventLeader(user.id, leader.id);
 
         if (loading) {
           return <Loader />;
@@ -114,10 +113,15 @@ const SingleEvent = ({ id }) => {
                       />
                       <h4>{locations[locations.length - 1].description}</h4>
                     </DetailSet>
-                    {!isEventLeader && (
+                    {!eventLeader && (
                       <JoinButton id={id} attendees={attendees} grid="2">
                         Join Event
                       </JoinButton>
+                    )}
+                    {eventLeader && (
+                      <EditButton id={id} grid="2">
+                        Edit Event
+                      </EditButton>
                     )}
                   </DetailsContainer>
                 </Card>
