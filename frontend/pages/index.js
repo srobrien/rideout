@@ -16,9 +16,10 @@ const Home = () => {
 
   if (!user) {
     return (
-      <LoggedOutContainer>
-        <LoginForm />
-      </LoggedOutContainer>
+      <div>Hello</div>
+      // <LoggedOutContainer>
+      //   <LoginForm />
+      // </LoggedOutContainer>
     );
   }
 
