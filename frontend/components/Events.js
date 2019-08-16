@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import { withRouter } from 'next/router';
 import { ALL_EVENTS_QUERY, FILTERED_EVENTS_QUERY } from '../graphql/Query';
 import { EVENTS_PER_PAGE } from '../config';
@@ -17,81 +17,29 @@ import Filter from './Filter';
 
 const Events = ({ page }) => {
   const [filter, setFilter] = useState('');
+  const { data, error, loading } = useQuery(FILTERED_EVENTS_QUERY, {
+    variables: { filter, skip: page * EVENTS_PER_PAGE - EVENTS_PER_PAGE },
+    notifyOnNetworkStatusChange: true,
+  });
 
-  if (filter === '') {
+  if (loading) {
     return (
-      <Query
-        query={ALL_EVENTS_QUERY}
-        variables={{
-          skip: page * EVENTS_PER_PAGE - EVENTS_PER_PAGE,
-        }}
-      >
-        {({ data, loading, subscribeToMore }) => {
-          if (loading) {
-            return (
-              <LoaderContainer>
-                <Loader />
-              </LoaderContainer>
-            );
-          }
-
-          return (
-            <Container>
-              <LSpacer />
-
-              <Filter filter={filter} setFilter={setFilter} />
-              <EventListing
-                events={data.events || []}
-                page={page}
-                subscribeToMore={subscribeToMore}
-              />
-
-              <Right>
-                <Activity />
-              </Right>
-              <RSpacer />
-            </Container>
-          );
-        }}
-      </Query>
+      <LoaderContainer>
+        <Loader />
+      </LoaderContainer>
     );
   }
+
   return (
-    <Query
-      query={FILTERED_EVENTS_QUERY}
-      variables={{
-        filter,
-        skip: page * EVENTS_PER_PAGE - EVENTS_PER_PAGE,
-      }}
-    >
-      {({ data, loading, subscribeToMore }) => {
-        if (loading) {
-          return (
-            <LoaderContainer>
-              <Loader />
-            </LoaderContainer>
-          );
-        }
-
-        return (
-          <Container>
-            <Filter filter={filter} setFilter={setFilter} />
-            <LSpacer />
-
-            <EventListing
-              events={data.events || []}
-              page={page}
-              subscribeToMore={subscribeToMore}
-            />
-
-            <Right>
-              <Activity />
-            </Right>
-            <RSpacer />
-          </Container>
-        );
-      }}
-    </Query>
+    <Container>
+      <LSpacer />
+      <Filter filter={filter} setFilter={setFilter} />
+      <EventListing events={data.events || []} page={page} />
+      <Right>
+        <Activity />
+      </Right>
+      <RSpacer />
+    </Container>
   );
 };
 

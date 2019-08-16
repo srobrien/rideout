@@ -6,6 +6,7 @@ import { AuthContext } from '../components/context/Auth';
 
 const Home = () => {
   const user = useContext(AuthContext);
+
   const [componentLoaded, setComponentLoaded] = useState(false);
   useEffect(() => {
     setComponentLoaded(true);
@@ -16,10 +17,9 @@ const Home = () => {
 
   if (!user) {
     return (
-      <div>Hello</div>
-      // <LoggedOutContainer>
-      //   <LoginForm />
-      // </LoggedOutContainer>
+      <LoggedOutContainer>
+        <LoginForm />
+      </LoggedOutContainer>
     );
   }
 

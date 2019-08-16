@@ -7,6 +7,8 @@ const Query = {
   comments: forwardTo('db'),
   comment: forwardTo('db'),
   user(parent, args, ctx, info) {
+
+
     if (!ctx.request.userId) {
       return null;
     }
