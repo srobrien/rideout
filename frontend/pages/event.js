@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { AuthContext } from '../components/context/Auth';
 import SingleEvent from '../components/SingleEvent';
 
-const EventPage = ({ query }) => {
+const EventPage = ({ router }) => {
   const user = useContext(AuthContext);
   const [componentLoaded, setComponentLoaded] = useState(false);
   useEffect(() => {
@@ -19,11 +19,11 @@ const EventPage = ({ query }) => {
     Router.push('/');
   }
 
-  return <SingleEvent id={query.id} />;
+  return <SingleEvent id={router.query.id} />;
 };
 
 export default withRouter(EventPage);
 
 EventPage.propTypes = {
-  query: PropTypes.object,
+  router: PropTypes.object,
 };

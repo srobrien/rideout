@@ -14,7 +14,7 @@ import {
   ViewButton,
   InfoItem,
 } from './styled/StyledEventItem';
-// import JoinButton from './JoinButton';
+import JoinButton from './JoinButton';
 import { AuthContext } from './context/Auth';
 
 const EventItem = ({ event }) => {
@@ -90,12 +90,12 @@ const EventItem = ({ event }) => {
         <p>{description}</p>
       </Description>
       <ViewButtonContainer>
-        {/* <JoinButton
+        <JoinButton
           id={id}
           attendees={attendees}
           grid="span 2"
           leader={eventLeader}
-        /> */}
+        />
 
         <Link href={{ pathname: '/event', query: { id: event.id } }}>
           <ViewButton type="button">View</ViewButton>

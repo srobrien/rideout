@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 import { ADD_ATTENDEE } from '../graphql/Mutation';
 import { StyledJoinButton, ButtonContainer } from './styled/StyledEvent';
 import { GET_SINGLE_EVENT, CURRENT_USER_QUERY } from '../graphql/Query';
@@ -16,37 +16,32 @@ const JoinButton = ({ id, attendees, grid, leader }) => {
       }
     });
   }
-
+  const [addAttendee, { loading }] = useMutation(ADD_ATTENDEE, {
+    variables: { id },
+    refetchQueries: [
+      {
+        query: GET_SINGLE_EVENT,
+        variables: { id },
+      },
+      {
+        query: CURRENT_USER_QUERY,
+      },
+    ],
+  });
   return (
-    <Mutation
-      mutation={ADD_ATTENDEE}
-      variables={{ id }}
-      refetchQueries={[
-        {
-          query: GET_SINGLE_EVENT,
-          variables: { id },
-        },
-        {
-          query: CURRENT_USER_QUERY,
-        },
-      ]}
-    >
-      {(addAttendee, { data, loading, error }) => (
-        <ButtonContainer>
-          {!leader && (
-            <StyledJoinButton
-              grid={grid}
-              joined={joined}
-              onClick={() => addAttendee()}
-              disabled={loading}
-            >
-              {joined ? 'Leave' : 'Join'}
-            </StyledJoinButton>
-          )}
-          {leader && <div />}
-        </ButtonContainer>
+    <ButtonContainer>
+      {!leader && (
+        <StyledJoinButton
+          grid={grid}
+          joined={joined}
+          onClick={() => addAttendee()}
+          disabled={loading}
+        >
+          {joined ? 'Leave' : 'Join'}
+        </StyledJoinButton>
       )}
-    </Mutation>
+      {leader && <div />}
+    </ButtonContainer>
   );
 };
 
