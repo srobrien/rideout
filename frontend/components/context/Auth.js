@@ -7,9 +7,12 @@ export const AuthContext = createContext();
 
 const Auth = ({ children }) => {
   const { data } = useQuery(CURRENT_USER_QUERY);
-  return (
-    <AuthContext.Provider value={data.user}>{children}</AuthContext.Provider>
-  );
+  if (data) {
+    return (
+      <AuthContext.Provider value={data.user}>{children}</AuthContext.Provider>
+    );
+  }
+  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
 };
 
 Auth.propTypes = {

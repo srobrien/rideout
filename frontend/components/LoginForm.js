@@ -22,14 +22,28 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  const [signIn, { data, error, loading }] = useMutation(SIGNIN_MUTATION, {
-    variables: { email, password },
-    refetchQueries: [{ query: CURRENT_USER_QUERY }],
-  });
+  const [signIn, { data, error, loading, called }] = useMutation(
+    SIGNIN_MUTATION,
+    {
+      variables: { email, password },
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    }
+  );
 
   useEffect(() => {
     setIsValid(email !== '' && password !== '');
   }, [setEmail, password, email]);
+
+  if (loading || (called && !error)) {
+    return (
+      <StyledForm>
+        <div style={{ textAlign: 'center' }}>
+          <FormTitle>Logging into RideOut</FormTitle>
+          <Loader />
+        </div>
+      </StyledForm>
+    );
+  }
 
   return (
     <StyledForm
@@ -46,61 +60,60 @@ const LoginForm = () => {
           {loading ? 'Logging into RideOut' : 'Login to RideOut'}
         </FormTitle>
       </div>
-      {loading && <Loader />}
-      {error && <Error error={error} />}
-      {!loading && !data && (
-        <>
-          <FormGroup>
-            <TextInput
-              type="email"
-              className={email !== '' ? 'used' : ''}
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              name="email"
-              required
-            />
-            <Highlight />
-            <Bar />
-            <Label>Email</Label>
-          </FormGroup>
-          <FormGroup>
-            <TextInput
-              value={password}
-              className={password !== '' ? 'used' : ''}
-              onChange={e => setPassword(e.target.value)}
-              type={checked ? 'text' : 'password'}
-              required
-            />
-            <Highlight />
-            <Bar />
-            <Label>Password</Label>
-          </FormGroup>
-          <CheckBox>
-            <label htmlFor="show">
-              <input
-                type="checkbox"
-                name="show"
-                id="show"
-                onChange={e => setChecked(!checked)}
-              />
-              <i className={`fas ${checked ? 'fa-eye-slash' : 'fa-eye'}`} />
-              {checked ? ' Hide ' : ' Show '} Password
-            </label>
-          </CheckBox>
-          <SubmitButton type="submit" disabled={isValid ? '' : 'disabled'}>
-            Submit{' '}
-          </SubmitButton>
 
-          <div style={{ textAlign: 'center' }}>
-            <h4>
-              {`Don't have an account? `}
-              <Link href="/register">
-                <a> Register</a>
-              </Link>
-            </h4>
-          </div>
-        </>
-      )}
+      {error && <Error error={error} />}
+
+      <>
+        <FormGroup>
+          <TextInput
+            type="email"
+            className={email !== '' ? 'used' : ''}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            name="email"
+            required
+          />
+          <Highlight />
+          <Bar />
+          <Label>Email</Label>
+        </FormGroup>
+        <FormGroup>
+          <TextInput
+            value={password}
+            className={password !== '' ? 'used' : ''}
+            onChange={e => setPassword(e.target.value)}
+            type={checked ? 'text' : 'password'}
+            required
+          />
+          <Highlight />
+          <Bar />
+          <Label>Password</Label>
+        </FormGroup>
+        <CheckBox>
+          <label htmlFor="show">
+            <input
+              type="checkbox"
+              name="show"
+              id="show"
+              onChange={e => setChecked(!checked)}
+            />
+            <i className={`fas ${checked ? 'fa-eye-slash' : 'fa-eye'}`} />
+            {checked ? ' Hide ' : ' Show '} Password
+          </label>
+        </CheckBox>
+        <SubmitButton type="submit" disabled={isValid ? '' : 'disabled'}>
+          Submit{' '}
+        </SubmitButton>
+
+        <div style={{ textAlign: 'center' }}>
+          <h4>
+            {`Don't have an account? `}
+            <Link href="/register">
+              <a> Register</a>
+            </Link>
+          </h4>
+        </div>
+      </>
     </StyledForm>
   );
 };
