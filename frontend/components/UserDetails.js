@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Mutation } from 'react-apollo';
-import { AuthContext } from './context/Auth';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useMutation } from '@apollo/react-hooks';
 import { CURRENT_USER_QUERY } from '../graphql/Query';
 import { UPDATE_USER_MUTATION } from '../graphql/Mutation';
 import PhotoUpload from './PhotoUpload';
 import { Loader } from './styled/StyledLoader';
 import { Success, Error } from './Alerts';
+import AppLayout from './AppLayout';
 import {
   StyledForm,
   FormGroup,
@@ -19,10 +20,10 @@ import {
   Left,
   Right,
   Bottom,
+  PageContainer,
 } from './styled/StyledForm';
 
-const UserDetails = () => {
-  const user = useContext(AuthContext);
+const UserDetails = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [password, setPassword] = useState('');
@@ -34,30 +35,28 @@ const UserDetails = () => {
   useEffect(() => {
     setIsValid(firstName !== '' && lastName !== '');
   }, [firstName, lastName, password]);
-
-  return (
-    <Mutation
-      mutation={UPDATE_USER_MUTATION}
-      variables={{
+  const [updateUser, { data, error, loading }] = useMutation(
+    UPDATE_USER_MUTATION,
+    {
+      variables: {
         firstName,
         lastName,
         password,
         id: user.id,
         photo: preview,
-      }}
-      refetchQueries={[{ query: CURRENT_USER_QUERY }]}
-    >
-      {(updateUser, { data, error, loading }) => (
-        <>
-          {error && <Error error={error} />}
-          {data && (
-            <Success
-              width="90%"
-              mb="5px"
-              msg="Winner Winner! Details Updated!"
-            />
-          )}
+      },
+      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    }
+  );
 
+  return (
+    <AppLayout>
+      <>
+        {error && <Error error={error} />}
+        {data && (
+          <Success width="90%" mb="5px" msg="Success! Details Updated!" />
+        )}
+        <PageContainer>
           <StyledForm
             width="90%"
             margin="0.9em auto"
@@ -126,7 +125,7 @@ const UserDetails = () => {
                 <Right>
                   {imgLoading && <Loader />}
                   {!imgLoading && (
-                    <>
+                    <div>
                       <img
                         src={preview}
                         alt="user"
@@ -138,7 +137,7 @@ const UserDetails = () => {
                         setPhoto={setPreview}
                         setLoading={setImgLoading}
                       />
-                    </>
+                    </div>
                   )}
                 </Right>
                 <Bottom>
@@ -152,9 +151,9 @@ const UserDetails = () => {
               </FormGrid>
             )}
           </StyledForm>
-        </>
-      )}
-    </Mutation>
+        </PageContainer>
+      </>
+    </AppLayout>
   );
 };
 
@@ -169,3 +168,7 @@ UserDetails.defaultProps = {
 };
 
 export default UserDetails;
+
+UserDetails.propTypes = {
+  user: PropTypes.object,
+};

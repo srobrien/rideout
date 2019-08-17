@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Router from 'next/router';
 import { AuthContext } from '../components/context/Auth';
-import AdminPage from '../components/AdminPage';
+import UserDetails from '../components/UserDetails';
 
 const UserAdmin = () => {
   const user = useContext(AuthContext);
@@ -16,7 +16,7 @@ const UserAdmin = () => {
   if (!user && componentLoaded) {
     Router.push('/');
   }
-  return <AdminPage user={user} />;
+  return <UserDetails user={user} />;
 };
 
 export default UserAdmin;

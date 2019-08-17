@@ -166,6 +166,11 @@ export const MainTitle = styled.h3`
 
 export const FormGrid = styled.div`
   display: grid;
+  @media screen and (max-width: 680px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, min-content);
+    grid-template-areas: 'Left' 'Right' 'Bottom';
+  }
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr auto;
   grid-template-areas: 'Left Right' 'Bottom Bottom';
@@ -176,6 +181,14 @@ export const Left = styled.div`
 `;
 export const Right = styled.div`
   grid-area: Right;
+  @media screen and (max-width: 680px) {
+    margin-top: 10px;
+    border-top: 1px solid #757575;
+    > div {
+      margin-top: 20px;
+    }
+  }
+
   align-self: center;
   margin: 0 auto;
   text-align: center;
@@ -212,5 +225,13 @@ export const Mobile = styled.div`
 export const Desktop = styled.div`
   @media screen and (max-width: 820px) {
     display: none;
+  }
+`;
+
+export const PageContainer = styled.div`
+  height: 100vh;
+  @media screen and (max-width: 680px) {
+    padding-bottom: 20px;
+    height: 100%;
   }
 `;

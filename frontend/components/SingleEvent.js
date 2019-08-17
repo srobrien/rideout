@@ -5,7 +5,7 @@ import formatDate from '../lib/formattedDate';
 import { AuthContext } from './context/Auth';
 import { GET_SINGLE_EVENT } from '../graphql/Query';
 import isEventLeader from '../lib/isEventLeader';
-import { Loader } from './styled/StyledLoader';
+import { Loader, LoaderContainer } from './styled/StyledLoader';
 import AppLayout from './AppLayout';
 import Map from './Map';
 import JoinButton from './JoinButton';
@@ -36,7 +36,13 @@ const SingleEvent = ({ id }) => {
   });
 
   if (loading) {
-    return <Loader />;
+    return (
+      <AppLayout>
+        <LoaderContainer>
+          <Loader />
+        </LoaderContainer>
+      </AppLayout>
+    );
   }
 
   if (data) {
