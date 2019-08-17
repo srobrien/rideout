@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import { useMutation } from '@apollo/react-hooks';
+import { UPDATE_EVENT_MUTATION } from '../graphql/Mutation';
 import { AuthContext } from './context/Auth';
 import {
   ActivityContainer,
@@ -11,10 +13,22 @@ import {
   Badge,
 } from './styled/StyledActivity';
 
+const event = {
+  id: '123',
+  title: 'hi',
+  description: 'hi again',
+  locations: [],
+  startDate: '2019-01-01',
+};
+
 const Activity = () => {
+  const [updateEvent] = useMutation(UPDATE_EVENT_MUTATION, {
+    variables: event,
+  });
   const { events, attending } = useContext(AuthContext);
   return (
     <ActivityContainer>
+      <button onClick={() => updateEvent()} />
       <Heading>
         <h1>Your RideOuts</h1>
       </Heading>

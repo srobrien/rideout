@@ -47,6 +47,32 @@ const CREATE_EVENT_MUTATION = gql`
   }
 `;
 
+const UPDATE_EVENT_MUTATION = gql`
+  mutation UPDATE_EVENT_MUTATION(
+    $id: String!
+    $title: String!
+    $description: String
+    $startDate: DateTime!
+    $locations: [Locations]
+  ) {
+    createEvent(
+      id: $id
+      title: $title
+      description: $description
+      startDate: $startDate
+      locations: $locations
+    ) {
+      id
+      title
+      description
+      startDate
+      locations {
+        description
+      }
+    }
+  }
+`;
+
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     signIn(email: $email, password: $password) {
@@ -109,6 +135,7 @@ const CREATE_COMMENT = gql`
 export {
   UPDATE_USER_MUTATION,
   CREATE_EVENT_MUTATION,
+  UPDATE_EVENT_MUTATION,
   SIGNIN_MUTATION,
   SIGNOUT_MUTATION,
   SIGNUP_MUTATION,

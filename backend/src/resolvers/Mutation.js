@@ -132,8 +132,18 @@ const Mutation = {
       },
       addFragmentToInfo(info, eventFragment)
     );
-    ctx.pubsub.publish('NEW_EVENT', { newEvent });
+
     return newEvent;
+  },
+
+  async updateEvent(parent, args, ctx, info) {
+    const { id, title, description, locations, startDate } = args;
+    const { userId } = ctx.request;
+    const event = ctx.db.query.event({
+      where: { id: 'cjy0y39b5wb440b53v34o682b' },
+    });
+    console.log(event);
+    return event;
   },
 
   async addAttendee(parent, args, ctx, info) {

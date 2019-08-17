@@ -10,6 +10,7 @@ type Mutation {
   updateUser(id: ID!, password: String, firstName: String, lastName: String, photo: String):User!
   createComment(id: ID!, comment: String!): Comment!,
   createEvent(title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
+  updateEvent(title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
   addAttendee(id: ID!): Event!
 }
 
