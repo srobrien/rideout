@@ -24,6 +24,13 @@ input[type="date" i], input[type="datetime-local" i], input[type="month" i], inp
   -webkit-font-smoothing: antialiased;
 }
 
+input:required {
+    box-shadow:none;
+}
+input:invalid {
+    box-shadow:none;
+}
+
 .style-unordered-list {
   padding: 0;
   margin-bottom: 0;

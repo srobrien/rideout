@@ -29,7 +29,7 @@ const EventItem = ({ event }) => {
     attendees,
     description,
   } = event;
-  const { date, time } = formatDate(startDate);
+  const { date, time } = formatDate(startDate, 'ddd Do MMMM YYYY');
   return (
     <EventContainer>
       <EventTitle>

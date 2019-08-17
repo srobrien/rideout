@@ -50,7 +50,7 @@ const SingleEvent = ({ id }) => {
       attendees,
     } = data.event;
     const eventLeader = isEventLeader(user.id, leader.id);
-    const { date, time } = formatDate(startDate);
+    const { date, time } = formatDate(startDate, 'ddd Do MMMM YYYY');
 
     return (
       <AppLayout>

@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Router, { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import isEventLeader from '../lib/isEventLeader';
 import { GET_SINGLE_EVENT } from '../graphql/Query';
 import { AuthContext } from '../components/context/Auth';
-import SingleEvent from '../components/SingleEvent';
+import EditEvent from '../components/EditEvent';
 
-const EventPage = ({ query }) => {
+const EventPage = ({ router }) => {
   const user = useContext(AuthContext);
   const [componentLoaded, setComponentLoaded] = useState(false);
   useEffect(() => {
@@ -20,17 +20,23 @@ const EventPage = ({ query }) => {
   if (!user && componentLoaded) {
     Router.push('/');
   }
-  return (
-    <Query query={GET_SINGLE_EVENT} variables={{ id: query.id }}>
-      {({ data, loading }) => {
-        if (data) {
-          const leaderId = data.event.leader.id;
-          const isLeader = isEventLeader(user.id, leaderId);
-          return <div>{`${isLeader}`}</div>;
-        }
-      }}
-    </Query>
-  );
+
+  const { data, error, loading } = useQuery(GET_SINGLE_EVENT, {
+    variables: { id: router.query.id },
+  });
+
+  if (data) {
+    if (Object.values(data).length === 0) {
+      return null;
+    }
+
+    const leaderId = data.event.leader.id || '';
+    if (!isEventLeader(user.id, leaderId)) {
+      Router.push('/');
+      return null;
+    }
+    return <EditEvent event={data.event} />;
+  }
 };
 
 export default withRouter(EventPage);
