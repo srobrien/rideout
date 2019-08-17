@@ -32,9 +32,6 @@ server.start(
       credentials: true,
       origin: process.env.FRONTEND_URL,
     },
-    subscriptions: {
-      keepAlive: true,
-    },
   },
   s => {
     console.log('Server running!');
