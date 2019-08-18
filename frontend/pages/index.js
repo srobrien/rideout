@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
+import Router from 'next/router';
 import LoginForm from '../components/LoginForm';
-import HomePage from '../components/HomePage';
 import { LoggedOutContainer } from '../components/styled/StyledAuthentication';
 import { AuthContext } from '../components/context/Auth';
 
@@ -24,7 +24,7 @@ const Home = () => {
   }
 
   if (componentLoaded) {
-    return <HomePage />;
+    Router.push('/events');
   }
   return null;
 };
