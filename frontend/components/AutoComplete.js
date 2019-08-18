@@ -8,30 +8,33 @@ import { PROXY } from '../config';
 import { TextInput, Highlight, Bar, Label } from './styled/StyledForm';
 import { DropDown, DropDownItem, SearchStyles } from './styled/StyledDropDown';
 
+// provides an autocomplete dropdown that queries Google Places API.
+// selectedLocations and function to set these from the addevent
 const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
-  const [locations, setLocations] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const [locations, setLocations] = useState([]); // sets up empty array to hold locations.
+  const [loaded, setLoaded] = useState(false); // sets up component loaded status, defaut false.
 
   useEffect(() => {
     setLoaded(true);
     return function cleanUp() {
       setLoaded(false);
     };
-  }, [loaded]);
+  }, [loaded]); // use effect will update loaded to true once component has been mounted.
 
+  // function takes an entry from the search bar and queries Google for matching results.
   const handleOnChange = debounce(async evt => {
     const google = `${PROXY}https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${
       evt.target.value
     }&types=geocode&language=en&key=${process.env.GOOGLE_KEY}`;
     evt.persist();
-    const res = await axios.get(google);
+    const res = await axios.get(google); // api call with constructed URL.
 
     if (res.status === 200) {
       setLocations(res.data.predictions);
-    }
-  }, 350);
+    } // puts result of api call into locations array.
+  }, 350); // debounce throttles network requests to every 350ms.
 
-  const itemToString = item => (item ? item.description : '');
+  const itemToString = item => (item ? item.description : ''); // function takes a location object and returns its description.
 
   const handleSelectItem = (item, state) => {
     if (item !== null) {
