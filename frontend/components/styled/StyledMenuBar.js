@@ -66,6 +66,7 @@ export const Menu = styled.div`
   min-width: 300px;
 
   h3 {
+    border-bottom: 1px solid transparent;
     :hover {
       cursor: pointer;
       border-bottom: 1px solid white;
