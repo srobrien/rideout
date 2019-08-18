@@ -2,10 +2,18 @@
 
 * { box-sizing:border-box; }
 html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
   height: 100%;
   margin: 0;
   padding: 0;
 }
+@-moz-document url-prefix() {
+  body {
+    font-weight: lighter !important;
+  }
+}
+
 body {
   font-family: 'Helvitica', sans-serif;
 	-webkit-font-smoothing: antialiased;
