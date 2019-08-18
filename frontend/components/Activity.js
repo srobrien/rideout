@@ -1,7 +1,5 @@
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { useMutation } from '@apollo/react-hooks';
-import { UPDATE_EVENT_MUTATION } from '../graphql/Mutation';
 import { AuthContext } from './context/Auth';
 import {
   ActivityContainer,
@@ -13,21 +11,13 @@ import {
   Badge,
 } from './styled/StyledActivity';
 
-const Activity = () => {
-  const [updateEvent] = useMutation(UPDATE_EVENT_MUTATION, {
-    variables: {
-      id: '123',
-      title: 'hi',
-      description: 'hi again',
-      startDate: '2019-01-01',
-      locations: [],
-    },
-  });
+// gets all events for logged in user.
+// displays them in a list with links and icons indicating if they are the event leader.
 
+const Activity = () => {
   const { events, attending } = useContext(AuthContext);
   return (
     <ActivityContainer>
-      <button onClick={() => updateEvent()}>Click Me!</button>
       <Heading>
         <h1>Your RideOuts</h1>
       </Heading>
