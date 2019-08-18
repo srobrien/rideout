@@ -148,8 +148,7 @@ const Mutation = {
 
   // updates a currently stored event.
   async updateEvent(parent, args, ctx, info) {
-    const { title, description, locations, startDate } = args; // collect and assign variables from request argument.
-    const id = '';
+    const { id, title, description, locations, startDate } = args; // collect and assign variables from request argument.
     const { userId } = ctx.request; // retrieve currently logged in user ID from request.
     const event = await ctx.db.query.event(
       {
