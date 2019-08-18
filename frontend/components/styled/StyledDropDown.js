@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const DropDown = styled.div`
   position: absolute;
@@ -20,16 +20,6 @@ const DropDownItem = styled.div`
     props.highlighted ? '10px solid #4a89dc' : '1px solid #757575'};
   img {
     margin-right: 10px;
-  }
-`;
-
-const glow = keyframes`
-  from {
-    box-shadow: 0 0 0px yellow;
-  }
-
-  to {
-    box-shadow: 0 0 10px 1px yellow;
   }
 `;
 

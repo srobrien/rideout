@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PlaceBar = styled.div`
-  display: inline-block;
+  display: block;
   float: right;
   button {
     background: none;

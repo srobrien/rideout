@@ -8,7 +8,7 @@ export const StyledMenuBar = styled.div`
   grid-template-columns: 200px auto min-content;
   grid-template-areas: 'Logo Spacer Menu';
   padding: 10px;
-  z-index: 5;
+  z-index: 1002;
   h3 {
     font-size: 1.2rem;
     color: #ffffff;
