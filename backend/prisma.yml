@@ -1,8 +1,6 @@
 endpoint: ${env:PRISMA_ENDPOINT}
-#endpoint: https://rideout-prod-7ab6085489.herokuapp.com/rideout/prod
 datamodel: datamodel.graphql
-disableAuth: true
-#TODO: Add APP Secret post production
+secret: ${env:PRISMA_SECRET}
 hooks:
   post-deploy:
     - graphql get-schema -p prisma

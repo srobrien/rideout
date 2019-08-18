@@ -4,7 +4,7 @@ const db = new Prisma({
   typeDefs: 'src/generated/prisma.graphql',
   endpoint: process.env.PRISMA_ENDPOINT,
   debug: false,
-  // TODO: Add Prisma Secret
-});
+  secret: process.env.PRISMA_SECRET,
+}); // creates a new DB instance linked to the production database.
 
-module.exports = db;
+module.exports = db; // exports the database.

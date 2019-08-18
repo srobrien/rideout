@@ -13,22 +13,21 @@ import {
   Badge,
 } from './styled/StyledActivity';
 
-const event = {
-  id: '123',
-  title: 'hi',
-  description: 'hi again',
-  locations: [],
-  startDate: '2019-01-01',
-};
-
 const Activity = () => {
   const [updateEvent] = useMutation(UPDATE_EVENT_MUTATION, {
-    variables: event,
+    variables: {
+      id: '123',
+      title: 'hi',
+      description: 'hi again',
+      startDate: '2019-01-01',
+      locations: [],
+    },
   });
+
   const { events, attending } = useContext(AuthContext);
   return (
     <ActivityContainer>
-      <button onClick={() => updateEvent()} />
+      <button onClick={() => updateEvent()}>Click Me!</button>
       <Heading>
         <h1>Your RideOuts</h1>
       </Heading>

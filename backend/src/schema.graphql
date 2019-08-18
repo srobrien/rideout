@@ -10,7 +10,7 @@ type Mutation {
   updateUser(id: ID!, password: String, firstName: String, lastName: String, photo: String):User!
   createComment(id: ID!, comment: String!): Comment!,
   createEvent(title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
-  updateEvent(title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
+  updateEvent(id: ID!,title: String!, description: String, startDate: DateTime!, locations: [Locations]): Event!
   addAttendee(id: ID!): Event!
 }
 
@@ -28,7 +28,5 @@ type Query {
   comments(where: CommentWhereInput, orderBy: CommentOrderByInput): [Comment]
 }
 
-type Subscription {
-  newEvent: Event
-}
+# These schemas list the types of database opertions are exposed by the server, the arguments that they expect to receive and the types that they will return.
 

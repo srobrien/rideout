@@ -49,13 +49,13 @@ const CREATE_EVENT_MUTATION = gql`
 
 const UPDATE_EVENT_MUTATION = gql`
   mutation UPDATE_EVENT_MUTATION(
-    $id: String!
+    $id: ID!
     $title: String!
     $description: String
     $startDate: DateTime!
     $locations: [Locations]
   ) {
-    createEvent(
+    updateEvent(
       id: $id
       title: $title
       description: $description
@@ -63,12 +63,6 @@ const UPDATE_EVENT_MUTATION = gql`
       locations: $locations
     ) {
       id
-      title
-      description
-      startDate
-      locations {
-        description
-      }
     }
   }
 `;

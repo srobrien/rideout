@@ -1,3 +1,5 @@
+# This file defines the types that are used by the Prisma functions and can be stored in the database
+
 type User {
   id: ID! @unique @id
   email: String! @unique
