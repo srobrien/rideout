@@ -44,15 +44,12 @@ const setMap = (locations, getWaypoints) => {
     });
 
     directionsManager.calculateDirections();
-    getWaypoints(directionsManager.getAllWaypoints());
   });
 };
 
 const Map = ({ locations }) => {
-  const getWaypoints = waypoints => {};
-
   useEffect(() => {
-    setMap(locations, getWaypoints);
+    setMap(locations);
   }, [locations]);
 
   return <MapContainer id="myMap" />;
