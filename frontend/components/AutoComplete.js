@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Downshift, { clearItems } from 'downshift';
+import Downshift from 'downshift';
 import debounce from 'lodash.debounce';
 import uniqueId from 'lodash.uniqueid';
 import axios from 'axios';
@@ -61,7 +61,6 @@ const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
           getItemProps,
           isOpen,
           highlightedIndex,
-          clearItems,
         }) => (
           <div className="auto-complete" style={{ zIndex: 0 }}>
             <TextInput
