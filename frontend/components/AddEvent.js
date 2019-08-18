@@ -113,7 +113,7 @@ const AddEvent = () => {
           e.preventDefault();
           await getLocationDescriptions();
           await createEvent().then(() => {
-            Router.push('/');
+            Router.push('/events');
           });
         }}
       >
