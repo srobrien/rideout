@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AlertStyles } from './styled/StyledAlerts';
 
+// takes an error message passed in to it and formats it according to its status.
 const Error = ({ error }) => {
   if (!error || !error.message) return null;
   if (
