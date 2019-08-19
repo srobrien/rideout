@@ -21,6 +21,7 @@ export const RSpacer = styled.div`
 
 export const EventContainer = styled.div`
   grid-area: Events;
+  margin-bottom: 60px;
 `;
 
 export const Right = styled.div`
