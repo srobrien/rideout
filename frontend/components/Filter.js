@@ -8,6 +8,16 @@ import {
   FilteredBadge,
 } from './styled/StyledFilter';
 
+// function to transform the first letter of the search term to match database entries.
+const titleCase = str => {
+  const splitStr = str.toLowerCase().split(' ');
+  for (let i = 0; i < splitStr.length; i += 1) {
+    splitStr[i] =
+      splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  return splitStr.join(' ');
+};
+
 // filter search component for the events page. Takes filter and setFilter function from parent.
 const Filter = ({ setFilter, filter }) => {
   const [filterTerm, setFilterTerm] = useState('');
@@ -33,7 +43,7 @@ const Filter = ({ setFilter, filter }) => {
           <input
             type="search"
             value={filterTerm}
-            onChange={e => setFilterTerm(e.target.value)}
+            onChange={e => setFilterTerm(titleCase(e.target.value))}
             placeholder="Filter by location"
             className="search-input"
           />
