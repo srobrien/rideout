@@ -18,6 +18,7 @@ export const StyledMenuBar = styled.div`
   top: ${props => (props.scroll ? '-15px' : '0px')};
   background-color: ${props => (props.scroll ? 'rgb(74,137,220)' : null)};
   border-bottom: ${props => (props.scroll ? '2px solid #3160b6' : '0')};
+  margin-bottom: ${props => (props.scroll ? '15px' : '0')};
   transition: all 0.5s ease-in-out;
 `;
 
