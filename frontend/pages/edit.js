@@ -21,11 +21,11 @@ const EventPage = ({ router }) => {
     Router.push('/');
   }
 
-  const { data, error, loading } = useQuery(GET_SINGLE_EVENT, {
+  const { data } = useQuery(GET_SINGLE_EVENT, {
     variables: { id: router.query.id },
   });
 
-  if (data) {
+  if (data && user) {
     if (Object.values(data).length === 0) {
       return null;
     }
@@ -37,6 +37,8 @@ const EventPage = ({ router }) => {
     }
     return <EditEvent event={data.event} />;
   }
+
+  return null;
 };
 
 export default withRouter(EventPage);
