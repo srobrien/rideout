@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useContext } from 'react';
 import { useMutation } from '@apollo/react-hooks';
+import { AuthContext } from './context/Auth';
 import { CURRENT_USER_QUERY } from '../graphql/Query';
 import { UPDATE_USER_MUTATION } from '../graphql/Mutation';
 import PhotoUpload from './PhotoUpload';
@@ -23,11 +23,21 @@ import {
   PageContainer,
 } from './styled/StyledForm';
 
-const UserDetails = ({ user }) => {
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
+const UserDetails = () => {
+  const user = useContext(AuthContext);
+  let userId = '';
+  let defaultFirstName = '';
+  let defaultLastName = '';
+  let userPhoto = './static/user.jpg';
+  if (user) {
+    userId = user.id;
+    defaultFirstName = user.firstName;
+    defaultLastName = user.lastName;
+    userPhoto = user.photo;
+  }
+  const [firstName, setFirstName] = useState(defaultFirstName);
+  const [lastName, setLastName] = useState(defaultLastName);
   const [password, setPassword] = useState('');
-  const userPhoto = user.photo || './static/user.jpg';
   const [checked, setChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
   const [preview, setPreview] = useState(userPhoto);
@@ -42,7 +52,7 @@ const UserDetails = ({ user }) => {
         firstName,
         lastName,
         password,
-        id: user.id,
+        id: userId,
         photo: preview,
       },
       refetchQueries: [{ query: CURRENT_USER_QUERY }],
@@ -157,18 +167,4 @@ const UserDetails = ({ user }) => {
   );
 };
 
-UserDetails.defaultProps = {
-  user: {
-    firstName: '',
-    lastName: '',
-    password: '',
-    id: '',
-    email: '',
-  },
-};
-
 export default UserDetails;
-
-UserDetails.propTypes = {
-  user: PropTypes.object,
-};
