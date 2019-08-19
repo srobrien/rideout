@@ -81,6 +81,7 @@ const Mutation = {
   // de-authenticates user from application.
   signOut(parent, args, ctx, info) {
     ctx.response.clearCookie('token'); // clears cookie containing JWT from users machine.
+
     return { message: 'goodbye' };
   },
 
