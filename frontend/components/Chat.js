@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import distanceInWords from 'date-fns/distance_in_words';
 import { CREATE_COMMENT } from '../graphql/Mutation';
 import { GET_COMMENTS } from '../graphql/Query';
-
 import {
   Container,
   ChatContainer,
@@ -22,28 +21,30 @@ import {
 import { Title } from './styled/StyledEvent';
 import { Loader } from './styled/StyledLoader';
 
+// chat component, takes in id of event for use in mutation.
 const Chat = ({ id }) => {
   const [comment, setComment] = useState('');
-  const { data, error, loading } = useQuery(GET_COMMENTS, {
+  const { data, loading } = useQuery(GET_COMMENTS, {
     variables: { id },
-  });
+  }); // retrieves all comments associated with the event.
 
   const [createComment] = useMutation(CREATE_COMMENT, {
     variables: { comment, id },
     refetchQueries: [{ query: GET_COMMENTS, variables: { id } }],
-  });
+  }); // initiates createComment function which can be invoked to run mutation.
 
-  if (loading) return <Loader />;
+  if (loading) return <Loader />; // show spinner if comments are still loading.
   if (data) {
+    // function run when comment form is submitted.
     const handleSubmit = async e => {
       e.preventDefault();
       if (comment.length > 0) {
-        await createComment();
-        setComment('');
+        await createComment(); // invokes mutation
+        setComment(''); // clears comment box.
       }
     };
-    console.log(data);
-    const { comments } = data;
+
+    const { comments } = data; // extracts all up to date comments from query.
     return (
       <Container>
         <Title>
