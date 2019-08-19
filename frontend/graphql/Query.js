@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
-import { EVENTS_PER_PAGE } from '../config';
+
+// exported graphql query snippets for quick use in useQuery hooks
 
 const CURRENT_USER_QUERY = gql`
   query CURRENT_USER_QUERY {
@@ -48,36 +49,29 @@ const ALL_EVENTS_QUERY = gql`
 `;
 
 const FILTERED_EVENTS_QUERY = gql`
-query FILTERED_EVENTS_QUERY($filter: String!, $skip: Int = 0, $first: Int = ${EVENTS_PER_PAGE}) {
-  events(where: {locations_some: {description_contains: $filter}}, first: $first, skip: $skip, orderBy: createdAt_DESC) {
-    id
-    title
-    startDate
-    description
-    locations {
+  query FILTERED_EVENTS_QUERY($filter: String!) {
+    events(
+      where: { locations_some: { description_contains: $filter } }
+      orderBy: createdAt_DESC
+    ) {
+      id
+      title
+      startDate
       description
-    }
-    attendees {
-      id
-      firstName
-      lastName
-      photo
-    }
-    leader  {
-      id
-      firstName
-      lastName
-      photo
-    }
-  }
-}
-`;
-
-const PAGINATION_QUERY = gql`
-  query PAGINATION_QUERY {
-    eventsConnection {
-      aggregate {
-        count
+      locations {
+        description
+      }
+      attendees {
+        id
+        firstName
+        lastName
+        photo
+      }
+      leader {
+        id
+        firstName
+        lastName
+        photo
       }
     }
   }
@@ -129,7 +123,6 @@ export {
   CURRENT_USER_QUERY,
   ALL_EVENTS_QUERY,
   FILTERED_EVENTS_QUERY,
-  PAGINATION_QUERY,
   GET_SINGLE_EVENT,
   GET_COMMENTS,
 };
