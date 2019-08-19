@@ -30,10 +30,14 @@ import {
 } from './styled/StyledEvent';
 
 const SingleEvent = ({ id }) => {
-  const user = useContext(AuthContext);
-  const { data, error, loading } = useQuery(GET_SINGLE_EVENT, {
+  const { data, loading } = useQuery(GET_SINGLE_EVENT, {
     variables: { id },
   });
+
+  const user = useContext(AuthContext);
+  if (!user) {
+    return null;
+  }
 
   if (loading) {
     return (
