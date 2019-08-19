@@ -29,16 +29,20 @@ import {
   AttendeeListItem,
 } from './styled/StyledEvent';
 
+// displays an event when accessed via link on main page, takes event ID as argument.
 const SingleEvent = ({ id }) => {
+  // gets event from database
   const { data, loading } = useQuery(GET_SINGLE_EVENT, {
     variables: { id },
   });
 
+  // checks if there is a user logged in.
   const user = useContext(AuthContext);
   if (!user) {
     return null;
   }
 
+  // show spinner if request ongoing.
   if (loading) {
     return (
       <AppLayout>
@@ -50,6 +54,7 @@ const SingleEvent = ({ id }) => {
   }
 
   if (data) {
+    // destructure event variables from database response.
     const {
       id: eventId,
       title,
@@ -59,9 +64,17 @@ const SingleEvent = ({ id }) => {
       leader,
       attendees,
     } = data.event;
+    // checks if current user is the event leader.
     const eventLeader = isEventLeader(user.id, leader.id);
+    // format date / time so it is suitable to display on page.
     const { date, time } = formatDate(startDate, 'ddd Do MMMM YYYY');
-
+    let startLocation = '';
+    let endLocation = '';
+    if (locations.length > 0) {
+      startLocation = locations[0].description;
+      endLocation = locations[locations.length - 1].description;
+    }
+    // display event details
     return (
       <AppLayout>
         <PageContainer>
@@ -115,14 +128,14 @@ const SingleEvent = ({ id }) => {
                     className="fas fa-map-marker-alt"
                     style={{ color: '#111111', marginRight: '3px' }}
                   />
-                  <h4>{locations[0].description}</h4>
+                  <h4>{startLocation}</h4>
                 </DetailSet>
                 <DetailSet>
                   <i
                     className="fas fa-flag-checkered"
                     style={{ color: '#111111', marginRight: '3px' }}
                   />
-                  <h4>{locations[locations.length - 1].description}</h4>
+                  <h4>{endLocation}</h4>
                 </DetailSet>
                 {!eventLeader && (
                   <JoinButton id={id} attendees={attendees} grid="2">
