@@ -16,7 +16,7 @@ const UserAdmin = () => {
   if (!user && componentLoaded) {
     Router.push('/');
   }
-  return <UserDetails user={user} />;
+  return <UserDetails />;
 };
 
 export default UserAdmin;
