@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CookieConsent from 'react-cookie-consent';
 import propTypes from 'prop-types';
 import Link from 'next/link';
 import Meta from './Meta';
 import Auth from './context/Auth';
 
+// page is outer wrapper component for all pages, provides common rules and content providers for all pages.
+// adds cookie consent popup bar to all pages if accept cookie not set.
 const MainApp = ({ children }) => (
   <>
     <Meta />

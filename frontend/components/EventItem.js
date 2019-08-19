@@ -17,9 +17,18 @@ import {
 import JoinButton from './JoinButton';
 import { AuthContext } from './context/Auth';
 
+// component renders a overview card of event in the events page event list, takes the event as an argument.
 const EventItem = ({ event }) => {
+  // get logged in user and verify user exists.
   const user = useContext(AuthContext);
+  if (!user) {
+    return null;
+  }
+
+  // checks if user is the event leader.
   const eventLeader = isEventLeader(event.leader.id, user.id);
+
+  // destructure event variables to use in component.
   const {
     id,
     title,
@@ -29,7 +38,10 @@ const EventItem = ({ event }) => {
     attendees,
     description,
   } = event;
+
+  // format time for display use.
   const { date, time } = formatDate(startDate, 'ddd Do MMMM YYYY');
+
   return (
     <EventContainer>
       <EventTitle>

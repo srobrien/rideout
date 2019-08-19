@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
+import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
-import { setDate } from 'date-fns';
-import { CREATE_EVENT_MUTATION } from '../graphql/Mutation';
-import {
-  ALL_EVENTS_QUERY,
-  FILTERED_EVENTS_QUERY,
-  PAGINATION_QUERY,
-} from '../graphql/Query';
+import { UPDATE_EVENT_MUTATION } from '../graphql/Mutation';
+import { ALL_EVENTS_QUERY } from '../graphql/Query';
 import AutoComplete from './AutoComplete';
 import Map from './Map';
 import AppLayout from './AppLayout';
-import { EVENTS_PER_PAGE } from '../config';
 import DraggableList from './DraggableList';
 import {
   FormGroup,
@@ -40,11 +35,10 @@ import {
 import { Loader, LoaderContainer } from './styled/StyledLoader';
 import formatDate from '../lib/formattedDate';
 
+// provides form and functionality to allow events to be updated.
 const EditEvent = ({ event }) => {
-  console.log(event);
-  const { date, time } = formatDate(event.startDate, 'YYYY-MM-DD');
-  console.log(date);
-  console.log(time);
+  const { date, time } = formatDate(event.startDate, 'YYYY-MM-DD'); // sets up date format for setting into form inputs.
+  // set initial variables, setters and state.
   const [title, setTitle] = useState(event.title);
   const [description, setDescription] = useState(event.description);
   const [startDate, setStartDate] = useState(date);
@@ -57,6 +51,7 @@ const EditEvent = ({ event }) => {
   const [isValid, setIsValid] = useState(true);
   const [sanitisedLocations, setSanitisedLocations] = useState([]);
 
+  // check if date / time contents change and update state.
   useEffect(() => {
     if (startDate !== '') {
       setDateUsed(true);
@@ -69,6 +64,7 @@ const EditEvent = ({ event }) => {
     }
   }, [startTime]);
 
+  // check if form contents change and validate inputs.
   useEffect(() => {
     setIsValid(
       title !== '' &&
@@ -84,10 +80,11 @@ const EditEvent = ({ event }) => {
       description: location.description,
     }));
     setSanitisedLocations(newLocations);
-  };
+  }; // sanitise form data for storing in database.
 
-  const [createEvent, { loading }] = useMutation(CREATE_EVENT_MUTATION, {
+  const [updateEvent, { loading }] = useMutation(UPDATE_EVENT_MUTATION, {
     variables: {
+      id: event.id,
       title,
       description,
       startDate: `${startDate}T${startTime}`,
@@ -96,11 +93,10 @@ const EditEvent = ({ event }) => {
 
     refetchQueries: [
       {
-        query: FILTERED_EVENTS_QUERY,
-        variables: { filter: '', skip: 1 * EVENTS_PER_PAGE - EVENTS_PER_PAGE },
+        query: ALL_EVENTS_QUERY,
       },
     ],
-  });
+  }); // initilise updateEvent function which can be instantiated to run mutation function.
 
   if (loading) {
     return (
@@ -118,9 +114,9 @@ const EditEvent = ({ event }) => {
         onSubmit={async e => {
           e.preventDefault();
           await getLocationDescriptions();
-          await createEvent().then(() => {
-            Router.push('/');
-          });
+          await updateEvent().then(() => {
+            Router.push('/events');
+          }); // when form is submitted, set locations, run updateEvent mutation and then push client to homepage.
         }}
       >
         <PageContainer>
@@ -271,3 +267,7 @@ const EditEvent = ({ event }) => {
 };
 
 export default EditEvent;
+
+EditEvent.propTypes = {
+  event: PropTypes.object,
+};

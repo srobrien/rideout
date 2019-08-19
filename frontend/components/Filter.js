@@ -8,13 +8,14 @@ import {
   FilteredBadge,
 } from './styled/StyledFilter';
 
+// filter search component for the events page. Takes filter and setFilter function from parent.
 const Filter = ({ setFilter, filter }) => {
   const [filterTerm, setFilterTerm] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
     setFilter(filterTerm);
     setFilterTerm('');
-  };
+  }; // when filter form is submitted, input value sent to events filter query and seach box reset.
   return (
     <SearchContainer filter={filter}>
       <SearchArea>

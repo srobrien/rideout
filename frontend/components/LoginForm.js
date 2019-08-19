@@ -17,23 +17,24 @@ import {
 import { Loader } from './styled/StyledLoader';
 import { Error } from './Alerts';
 
+// login form displayed to user if valid cookie is not set on client.
 const LoginForm = () => {
+  // set up initial variables, setters and set initial state.
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
-  const [signIn, { data, error, loading, called }] = useMutation(
-    SIGNIN_MUTATION,
-    {
-      variables: { email, password },
-      refetchQueries: [{ query: CURRENT_USER_QUERY }],
-    }
-  );
+  const [signIn, { error, loading, called }] = useMutation(SIGNIN_MUTATION, {
+    variables: { email, password },
+    refetchQueries: [{ query: CURRENT_USER_QUERY }],
+  }); // initiate signIn mutation which will authenticate and authorise user.
 
+  // check if form contents are filled and valid.
   useEffect(() => {
     setIsValid(email !== '' && password !== '');
   }, [setEmail, password, email]);
 
+  // show spinner if requests are being made.
   if (loading || (called && !error)) {
     return (
       <StyledForm>
@@ -45,6 +46,7 @@ const LoginForm = () => {
     );
   }
 
+  // main login form.
   return (
     <StyledForm
       method="post"

@@ -6,8 +6,12 @@ import { StyledJoinButton, ButtonContainer } from './styled/StyledEvent';
 import { GET_SINGLE_EVENT, CURRENT_USER_QUERY } from '../graphql/Query';
 import { AuthContext } from './context/Auth';
 
+// join button allows user to join / leave event if they are not event leader.
 const JoinButton = ({ id, attendees, grid, leader }) => {
+  // gets and checks currently logged in user.
   const user = useContext(AuthContext);
+
+  // maps over event attendees and checks if user has already joined event.
   let joined = false;
   if (attendees && user) {
     attendees.forEach(a => {
@@ -16,6 +20,7 @@ const JoinButton = ({ id, attendees, grid, leader }) => {
       }
     });
   }
+
   const [addAttendee, { loading }] = useMutation(ADD_ATTENDEE, {
     variables: { id },
     refetchQueries: [
@@ -27,7 +32,7 @@ const JoinButton = ({ id, attendees, grid, leader }) => {
         query: CURRENT_USER_QUERY,
       },
     ],
-  });
+  }); // initiates addAttendee mutation which will toggle user to and from attendee list when function run.
   return (
     <ButtonContainer>
       {!leader && (

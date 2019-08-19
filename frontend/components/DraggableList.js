@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { PlaceBar } from './styled/StyledDraggableList';
 
+// helper function to handle re-ordering of location items.
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -10,6 +11,7 @@ const reorder = (list, startIndex, endIndex) => {
   return result;
 };
 
+// sets style of location items when being dragged / dropped.
 const getItemStyle = (draggableStyle, isDragging) => ({
   userSelect: 'none',
   padding: 8,
@@ -21,11 +23,13 @@ const getItemStyle = (draggableStyle, isDragging) => ({
   ...draggableStyle,
 });
 
+// sets style of location item when being dragged over.
 const getListStyle = isDraggingOver => ({
   width: '100%',
   marginBottom: '30px',
 });
 
+// component displays location items and allows them to be dragged / dropped and re-ordered
 const DraggableList = ({ items, setItems }) => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
@@ -33,8 +37,9 @@ const DraggableList = ({ items, setItems }) => {
     return function cleanUp() {
       setLoaded(false);
     };
-  }, [loaded]);
+  }, [loaded]); // checks if compontent has been mounted.
 
+  // function handles re-ordering and setting of locations when dragging comeplted.
   const onDragEnd = result => {
     if (!result.destination) {
       return;
@@ -49,6 +54,7 @@ const DraggableList = ({ items, setItems }) => {
     setItems(newItems);
   };
 
+  // helper function to handle removing element from the list.
   const removeItem = (e, list, i) => {
     e.preventDefault();
     const updatedList = list.slice(0, i).concat(list.slice(i + 1, list.length));

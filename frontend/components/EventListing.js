@@ -1,27 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import EventItem from './EventItem';
-// import Pagination from './Pagination';
 import { EventContainer } from './styled/StyledEventsHomePage';
 
-export default class EventListing extends Component {
-  render() {
-    const { events } = this.props;
-    const { page } = this.props;
+// renders a list of event item cards on the events page.
+const EventListing = ({ events }) => (
+  <EventContainer>
+    {events.map(e => (
+      <EventItem key={e.id} event={e} />
+    ))}
+  </EventContainer>
+);
 
-    return (
-      <EventContainer>
-        {events.map(e => (
-          <EventItem key={e.id} event={e} />
-        ))}
-
-        {/* <Pagination page={page} /> */}
-      </EventContainer>
-    );
-  }
-}
+export default EventListing;
 
 EventListing.propTypes = {
-  page: PropTypes.number,
   events: PropTypes.array,
 };
