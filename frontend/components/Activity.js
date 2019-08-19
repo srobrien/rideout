@@ -13,9 +13,12 @@ import {
 
 // gets all events for logged in user.
 // displays them in a list with links and icons indicating if they are the event leader.
-
 const Activity = () => {
-  const { events, attending } = useContext(AuthContext);
+  const user = useContext(AuthContext);
+  if (!user) {
+    return null;
+  }
+  const { events, attending } = user;
   return (
     <ActivityContainer>
       <Heading>
