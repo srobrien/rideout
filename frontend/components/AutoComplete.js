@@ -9,7 +9,7 @@ import { TextInput, Highlight, Bar, Label } from './styled/StyledForm';
 import { DropDown, DropDownItem, SearchStyles } from './styled/StyledDropDown';
 
 // provides an autocomplete dropdown that queries Google Places API.
-// selectedLocations and function to set these from the addevent
+// selectedLocations and function to set these from the addevent component.
 const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
   const [locations, setLocations] = useState([]); // sets up empty array to hold locations.
   const [loaded, setLoaded] = useState(false); // sets up component loaded status, defaut false.
@@ -46,7 +46,7 @@ const AutoComplete = ({ selectedLocations, setSelectedLocations }) => {
       setSelectedLocations(updatedLocations);
       state.clearSelection();
     }
-  };
+  }; // when item is selected the parents selectedLocations state is updated.
 
   if (!loaded) {
     return null;
