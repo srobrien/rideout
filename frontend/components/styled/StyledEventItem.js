@@ -8,7 +8,6 @@ export const EventContainer = styled.div`
   @media (max-width: 830px) {
     margin: 30px 0 0 0;
   }
-
   display: grid;
   grid-template-columns: 4fr 1.2fr;
   grid-template-rows: 1fr 2fr 1fr 1.5fr 3fr;
@@ -16,6 +15,7 @@ export const EventContainer = styled.div`
   background: #f9f9f9f9;
   margin: 30px 30px 0 0;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
 `;
 
 export const EventTitle = styled.div`
