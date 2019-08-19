@@ -2,6 +2,7 @@ const withImages = require('next-images');
 
 module.exports = withImages();
 
+// injects environmental variables into code on build.
 module.exports = {
   env: {
     GOOGLE_KEY: `AIzaSyCmBdQx-OL67TvGteTZuVsI0fM2eYNWF_A`,

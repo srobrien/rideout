@@ -1,5 +1,7 @@
 import gql from 'graphql-tag';
 
+// exported graphql mutation snippets for quick use in useMutation hooks
+
 const UPDATE_USER_MUTATION = gql`
   mutation UPDATE_USER_MUTATION(
     $id: ID!

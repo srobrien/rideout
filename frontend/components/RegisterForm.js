@@ -14,23 +14,26 @@ import {
   SubmitButton,
   FormTitle,
 } from './styled/StyledForm';
-
 import { Loader } from './styled/StyledLoader';
 import { Error } from './Alerts';
 
+// renders register form to user to allow them to sign up for the application.
 const RegisterForm = () => {
+  // initiates varaibles and setter functions, set initial component state.
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [checked, setChecked] = useState(false);
   const [isValid, setIsValid] = useState(false);
+  // validate form fields on input change.
   useEffect(() => {
     setIsValid(
       firstName !== '' && lastName !== '' && email !== '' && password !== ''
     );
   }, [email, firstName, lastName, password]);
 
+  // initiate signUp mutation which will create a new user when called.
   const [signUp, { data, error, loading, called }] = useMutation(
     SIGNUP_MUTATION,
     {
@@ -45,6 +48,7 @@ const RegisterForm = () => {
     }
   );
 
+  // show spinner if request is ongoing.
   if (loading || (called && !error)) {
     return (
       <StyledForm>
@@ -56,6 +60,7 @@ const RegisterForm = () => {
     );
   }
 
+  // return register form.
   if (!data) {
     return (
       <StyledForm
@@ -87,7 +92,6 @@ const RegisterForm = () => {
           <Bar />
           <Label>First Name</Label>
         </FormGroup>
-
         <FormGroup>
           <TextInput
             type="text"
@@ -100,7 +104,6 @@ const RegisterForm = () => {
           <Bar />
           <Label>Last Name</Label>
         </FormGroup>
-
         <FormGroup>
           <TextInput
             type="email"
@@ -113,7 +116,6 @@ const RegisterForm = () => {
           <Bar />
           <Label>Email</Label>
         </FormGroup>
-
         <FormGroup>
           <TextInput
             value={password}
@@ -126,7 +128,6 @@ const RegisterForm = () => {
           <Bar />
           <Label>Password</Label>
         </FormGroup>
-
         <CheckBox>
           <label htmlFor="show">
             <input
@@ -139,11 +140,9 @@ const RegisterForm = () => {
             {checked ? ' Hide ' : ' Show '} Password
           </label>
         </CheckBox>
-
         <SubmitButton type="submit" disabled={isValid ? '' : 'disabled'}>
           Register{' '}
         </SubmitButton>
-
         <div style={{ textAlign: 'center' }}>
           <h4>
             Already Registered?{' '}

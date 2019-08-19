@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-
 import {
   SidebarContainer,
   SidebarContents,
@@ -9,6 +8,7 @@ import {
 } from './styled/StyledSidebar';
 import LogOut from './LogOut';
 
+// sidebar in shown in place of menu if application is open in mobile device.
 const SideBar = ({ isOpen, user }) => (
   <SidebarContainer isOpen={isOpen}>
     <SidebarContents>

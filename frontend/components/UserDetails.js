@@ -23,18 +23,24 @@ import {
   PageContainer,
 } from './styled/StyledForm';
 
+// display form to allow user to update their name, photo and password.
+
 const UserDetails = () => {
+  // get currently logged in user.
   const user = useContext(AuthContext);
+  // set default values should no user be returned (during server render).
   let userId = '';
   let defaultFirstName = '';
   let defaultLastName = '';
   let userPhoto = './static/user.jpg';
+  // once user is available overwrite user details.
   if (user) {
     userId = user.id;
     defaultFirstName = user.firstName;
     defaultLastName = user.lastName;
     userPhoto = user.photo;
   }
+  // initiate variables, setter functions and initial state.
   const [firstName, setFirstName] = useState(defaultFirstName);
   const [lastName, setLastName] = useState(defaultLastName);
   const [password, setPassword] = useState('');
@@ -42,9 +48,11 @@ const UserDetails = () => {
   const [isValid, setIsValid] = useState(false);
   const [preview, setPreview] = useState(userPhoto);
   const [imgLoading, setImgLoading] = useState(false);
+  // check form validity if inputs change.
   useEffect(() => {
     setIsValid(firstName !== '' && lastName !== '');
   }, [firstName, lastName, password]);
+  // initiate updateUser funtions which will update the user details when called.
   const [updateUser, { data, error, loading }] = useMutation(
     UPDATE_USER_MUTATION,
     {
@@ -55,10 +63,11 @@ const UserDetails = () => {
         id: userId,
         photo: preview,
       },
-      refetchQueries: [{ query: CURRENT_USER_QUERY }],
+      refetchQueries: [{ query: CURRENT_USER_QUERY }], // refresh current user status in cache.
     }
   );
 
+  // return update user form.
   return (
     <AppLayout>
       <>
@@ -123,7 +132,7 @@ const UserDetails = () => {
                         type="checkbox"
                         name="show"
                         id="show"
-                        onChange={e => setChecked(!checked)}
+                        onChange={() => setChecked(!checked)}
                       />
                       <i
                         className={`fas ${checked ? 'fa-eye-slash' : 'fa-eye'}`}
