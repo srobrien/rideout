@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_EVENT_MUTATION } from '../graphql/Mutation';
-import { ALL_EVENTS_QUERY } from '../graphql/Query';
+import { FILTERED_EVENTS_QUERY } from '../graphql/Query';
 import AutoComplete from './AutoComplete';
 import Map from './Map';
 import AppLayout from './AppLayout';
@@ -87,7 +87,8 @@ const AddEvent = () => {
 
     refetchQueries: [
       {
-        query: ALL_EVENTS_QUERY,
+        query: FILTERED_EVENTS_QUERY,
+        variables: { filter: '' },
       },
     ],
   }); // initiates createEvent mutation, supplies hook with variables to be sent to mutation and queries to be run to refresh data in cache once mutation complete.
