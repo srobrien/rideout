@@ -2,15 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_EVENT_MUTATION } from '../graphql/Mutation';
-import {
-  ALL_EVENTS_QUERY,
-  FILTERED_EVENTS_QUERY,
-  PAGINATION_QUERY,
-} from '../graphql/Query';
+import { ALL_EVENTS_QUERY } from '../graphql/Query';
 import AutoComplete from './AutoComplete';
 import Map from './Map';
 import AppLayout from './AppLayout';
-import { EVENTS_PER_PAGE } from '../config';
 import DraggableList from './DraggableList';
 import {
   FormGroup,
@@ -38,7 +33,9 @@ import {
 } from './styled/StyledAddEvent';
 import { Loader, LoaderContainer } from './styled/StyledLoader';
 
+// component shows form to allow new event to be added.
 const AddEvent = () => {
+  // set up initial variables and setters, sets up inital state.
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [startDate, setStartDate] = useState('');
@@ -55,13 +52,13 @@ const AddEvent = () => {
     if (startDate !== '') {
       setDateUsed(true);
     }
-  }, [startDate]);
+  }, [startDate]); // re-renders component is date input is changed.
 
   useEffect(() => {
     if (startTime !== '') {
       setTimeUsed(true);
     }
-  }, [startTime]);
+  }, [startTime]); // re-renders component if time input is changed.
 
   useEffect(() => {
     setIsValid(
@@ -71,14 +68,14 @@ const AddEvent = () => {
         startTime !== '' &&
         locations.length > 0
     );
-  }, [description, locations, startDate, startTime, title]);
+  }, [description, locations, startDate, startTime, title]); // checks for validity of varaibles when contents of their inputs change.
 
   const getLocationDescriptions = async () => {
     const newLocations = locations.map(location => ({
       description: location.description,
     }));
     setSanitisedLocations(newLocations);
-  };
+  }; // sanitises locations array to make it suitable to store in the database.
 
   const [createEvent, { loading }] = useMutation(CREATE_EVENT_MUTATION, {
     variables: {
@@ -90,11 +87,10 @@ const AddEvent = () => {
 
     refetchQueries: [
       {
-        query: FILTERED_EVENTS_QUERY,
-        variables: { filter: '', skip: 1 * EVENTS_PER_PAGE - EVENTS_PER_PAGE },
+        query: ALL_EVENTS_QUERY,
       },
     ],
-  });
+  }); // initiates createEvent mutation, supplies hook with variables to be sent to mutation and queries to be run to refresh data in cache once mutation complete.
 
   if (loading) {
     return (
