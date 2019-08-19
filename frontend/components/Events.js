@@ -19,7 +19,7 @@ import Filter from './Filter';
 const Events = ({ page }) => {
   const [filter, setFilter] = useState('');
   const { data, loading } = useQuery(FILTERED_EVENTS_QUERY, {
-    variables: { filter, skip: page * EVENTS_PER_PAGE - EVENTS_PER_PAGE },
+    variables: { filter },
     notifyOnNetworkStatusChange: true,
   }); // queries database for all events, or event by filter if it is provided.
 
