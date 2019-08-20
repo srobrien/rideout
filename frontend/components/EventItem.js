@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import formatDate from '../lib/formattedDate';
+import createExcerpt from '../lib/createExcerpt';
 import isEventLeader from '../lib/isEventLeader';
 import {
   EventContainer,
@@ -41,16 +42,6 @@ const EventItem = ({ event }) => {
 
   // format time for display use.
   const { date, time } = formatDate(startDate, 'ddd Do MMMM YYYY');
-
-  const createExcerpt = (text, length) => {
-    const arr = text.split(' ');
-    const tails = arr.length - 1 > length;
-    const spliced = arr.splice(0, length);
-    if (tails) {
-      spliced.push('...');
-    }
-    return spliced.join(' ');
-  };
 
   return (
     <EventContainer>
