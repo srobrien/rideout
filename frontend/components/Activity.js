@@ -9,6 +9,7 @@ import {
   Event,
   AttendingEvents,
   Badge,
+  ActivityDescription,
 } from './styled/StyledActivity';
 
 // gets all events for logged in user.
@@ -34,7 +35,9 @@ const Activity = () => {
           {events.map(e => (
             <Link key={e.id} href={{ pathname: '/event', query: { id: e.id } }}>
               <Event>
-                <h4>{e.title}</h4>
+                <ActivityDescription>
+                  <h4>{e.title}</h4>
+                </ActivityDescription>
                 <Badge color="#ff8716">LEADER</Badge>
               </Event>
             </Link>

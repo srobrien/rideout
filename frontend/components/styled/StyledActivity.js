@@ -32,7 +32,15 @@ export const Activites = styled.div`
   h4 {
     margin: 0;
     color: #111111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+`;
+
+export const ActivityDescription = styled.div`
+  overflow: -moz-hidden-unscrollable;
+  text-overflow: ellipsis;
 `;
 
 export const LeadingEvents = styled.ul`
@@ -56,13 +64,16 @@ export const Event = styled.li`
 `;
 
 export const Badge = styled.span`
-  display: inline-block;
+  display: block;
   background: ${props => props.color};
   color: #ffffff;
-  padding: 2px;
+  padding: 4px 2px 2px 2px;
   border-radius: 3px;
   margin-left: 10px;
   font-size: 0.65rem;
+  width: 48px;
+  float: right;
+  text-align: center;
 `;
 
 export const AttendingEvents = styled.ul`

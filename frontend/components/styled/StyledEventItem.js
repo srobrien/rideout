@@ -7,7 +7,7 @@ export const EventContainer = styled.div`
   }
   @media (max-width: 830px) {
     margin: 30px 0 0 0;
-    grid-template-rows: 35px 65px 100px 45px 250px;
+    grid-template-rows: 35px 65px 100px 45px max-content;
   }
   display: grid;
   grid-template-columns: 4fr 1.2fr;
@@ -27,6 +27,8 @@ export const EventTitle = styled.div`
     color: #ffffff;
     margin: 5px 5px 5px 5px;
     font-size: 1.3rem;
+    overflow: hidden;
+    white-space: nowrap;
   }
 `;
 
