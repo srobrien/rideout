@@ -1,17 +1,20 @@
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-// const enforce = require('express-sslify');
 require('dotenv').config({ path: 'variables.env' });
 const createServer = require('./createServer');
 const db = require('./db');
 
 const server = createServer(); // create new server instance.
-// server.express.use(enforce.HTTPS({ trustProtoHeader: true }));
+
 server.express.use(cookieParser()); // use cookieParser middleware.
-server.express.use((req, res, next) => {
-  console.log(req.cookies);
-  next();
-});
+if (process.env.NODE_ENV === 'production') {
+  server.express.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`);
+    else next();
+  });
+}
+
 server.express.use((req, res, next) => {
   const { token } = req.cookies; // extract the toke JWT from the cookie sent with client request to server.
   if (token) {
