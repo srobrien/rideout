@@ -15,7 +15,7 @@ export default App =>
         appProps = await App.getInitialProps(ctx, headers);
         const data = {
           headers,
-          appProps,
+          ...appProps,
         };
         appProps = { data };
       }
