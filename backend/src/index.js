@@ -1,10 +1,12 @@
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+const enforce = require('express-sslify');
 require('dotenv').config({ path: 'variables.env' });
 const createServer = require('./createServer');
 const db = require('./db');
 
 const server = createServer(); // create new server instance.
+server.express.use(enforce.HTTPS({ trustProtoHeader: true }));
 server.express.use(cookieParser()); // use cookieParser middleware.
 server.express.use((req, res, next) => {
   const { token } = req.cookies; // extract the toke JWT from the cookie sent with client request to server.
