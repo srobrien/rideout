@@ -10,7 +10,7 @@ export const ActivityContainer = styled.div`
   grid-template-rows: 0.1fr 1fr;
   grid-template-areas: 'heading ' 'activities';
   background: #f9f9f9f9;
-  height: 300px;
+  height: 315px;
   width: 100%;
   margin: 30px 30px 0 0;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);

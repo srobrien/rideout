@@ -7,10 +7,11 @@ export const EventContainer = styled.div`
   }
   @media (max-width: 830px) {
     margin: 30px 0 0 0;
+    grid-template-rows: 35px 65px 100px 45px 250px;
   }
   display: grid;
   grid-template-columns: 4fr 1.2fr;
-  grid-template-rows: 1fr 2fr 1fr 1.5fr 3fr;
+  grid-template-rows: 35px 65px 40px 45px 130px;
   grid-template-areas: 'eventtitle eventtitle' 'details details' 'dateinfo dateinfo' 'attendees attendees' 'description button';
   background: #f9f9f9f9;
   margin: 30px 30px 0 0;

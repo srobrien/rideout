@@ -32,7 +32,6 @@ export const DirectionsContainer = styled.div`
 `;
 
 export const Directions = styled.div`
-  max-height: 400px;
   overflow-y: scroll;
 `;
 
@@ -65,6 +64,7 @@ export const Card = styled.div`
   background-color: #f9f9f9;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   padding: 20px 5px 5px 5px;
+  max-height: ${props => props.height || null};
 `;
 
 export const DetailSet = styled.div`
@@ -90,6 +90,8 @@ export const DetailsDescription = styled.div`
   h4 {
     margin: 2px 0 2px 0;
   }
+  max-height: 202px;
+  overflow-y: scroll;
 `;
 
 export const Box = styled.div`

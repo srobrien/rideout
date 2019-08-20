@@ -155,11 +155,11 @@ const SingleEvent = ({ id }) => {
             <Title>
               <h1>Route Directions</h1>
             </Title>
-            <Directions>
-              <Card>
+            <Card height="400px">
+              <Directions>
                 <Box id="directionsItinerary" />
-              </Card>
-            </Directions>
+              </Directions>
+            </Card>
           </DirectionsContainer>
 
           <Attendees>

@@ -42,6 +42,16 @@ const EventItem = ({ event }) => {
   // format time for display use.
   const { date, time } = formatDate(startDate, 'ddd Do MMMM YYYY');
 
+  const createExcerpt = (text, length) => {
+    const arr = text.split(' ');
+    const tails = arr.length - 1 > length;
+    const spliced = arr.splice(0, length);
+    if (tails) {
+      spliced.push('...');
+    }
+    return spliced.join(' ');
+  };
+
   return (
     <EventContainer>
       <EventTitle>
@@ -99,7 +109,7 @@ const EventItem = ({ event }) => {
         ))}
       </Attendees>
       <Description>
-        <p>{description}</p>
+        <p>{createExcerpt(description, 50)}</p>
       </Description>
       <ViewButtonContainer>
         <JoinButton

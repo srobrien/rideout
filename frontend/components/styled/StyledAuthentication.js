@@ -5,7 +5,6 @@ export const LoggedOutContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
-  margin-bottom: 10px;
   background-image: url('./static/background.jpg');
   background-position: center;
   background-attachment: fixed;
