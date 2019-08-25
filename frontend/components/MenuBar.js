@@ -20,7 +20,7 @@ import SideBar from './SideBar';
 // component renders menubar at top of page, alters styling on page scroll and width change.
 const MenuBar = () => {
   // gets currently logged in user.
-  const user = useContext(AuthContext) || {};
+  const user = useContext(AuthContext);
 
   // set initial variables, setters and initial state.
   const [scroll, setScroll] = useState(false);
