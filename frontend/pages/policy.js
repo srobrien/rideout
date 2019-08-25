@@ -8,7 +8,8 @@ const Policy = () => (
         background: '#fff',
         width: '95%',
         margin: '0 auto',
-        marginTop: '20px',
+        marginTop: '10px',
+        paddingTop: '20px',
         boxShadow:
           '0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22)',
       }}
