@@ -3,7 +3,15 @@ import AppLayout from '../components/AppLayout';
 
 const Policy = () => (
   <AppLayout>
-    <div style={{ background: '#fff', width: '95%', marginLeft: '50%' }}>
+    <div
+      style={{
+        background: '#fff',
+        width: '95%',
+        margin: '0 auto',
+        boxShadow:
+          '0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22)',
+      }}
+    >
       <ul>
         <p>
           <strong>What Are Cookies</strong>
