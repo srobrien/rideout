@@ -1,8 +1,8 @@
 import React from 'react';
-import AppLayout from '../components/AppLayout';
+import { LoggedOutContainer } from '../components/styled/StyledAuthentication';
 
 const Policy = () => (
-  <AppLayout>
+  <LoggedOutContainer>
     <div
       style={{
         background: '#fff',
@@ -129,7 +129,7 @@ const Policy = () => (
         </ul>
       </ul>
     </div>
-  </AppLayout>
+  </LoggedOutContainer>
 );
 
 export default Policy;
