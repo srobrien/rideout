@@ -61,34 +61,38 @@ const MenuBar = () => {
           </Link>
         </Logo>
         <Spacer />
-        <MenuBurger>
-          <SideBar isOpen={isOpen} user={user} />
-          <StyledBurger isOpen={isOpen} setIsOpen={setIsOpen} />
-        </MenuBurger>
-        <Menu>
-          <Link href="/events">
-            <h3>RideOuts</h3>
-          </Link>
-          <Link href="/addevent" prefetch>
-            <h3>New Event</h3>
-          </Link>
-          <UserButton>
-            <img
-              style={{ width: '40px', height: '40px', borderRadius: '50%' }}
-              src={user.photo}
-              alt={user ? user.firstName : 'placeholder image'}
-            />
-            <DropMenu>
-              <Triangle />
-              <ul>
-                <Link href="/useradmin">
-                  <li>My Account</li>
-                </Link>
-                <LogOut />
-              </ul>
-            </DropMenu>
-          </UserButton>
-        </Menu>
+        {user && (
+          <MenuBurger>
+            <SideBar isOpen={isOpen} user={user} />
+            <StyledBurger isOpen={isOpen} setIsOpen={setIsOpen} />
+          </MenuBurger>
+        )}
+        {user && (
+          <Menu>
+            <Link href="/events">
+              <h3>RideOuts</h3>
+            </Link>
+            <Link href="/addevent" prefetch>
+              <h3>New Event</h3>
+            </Link>
+            <UserButton>
+              <img
+                style={{ width: '40px', height: '40px', borderRadius: '50%' }}
+                src={user.photo}
+                alt={user ? user.firstName : 'placeholder image'}
+              />
+              <DropMenu>
+                <Triangle />
+                <ul>
+                  <Link href="/useradmin">
+                    <li>My Account</li>
+                  </Link>
+                  <LogOut />
+                </ul>
+              </DropMenu>
+            </UserButton>
+          </Menu>
+        )}
       </StyledMenuBar>
     </>
   );
