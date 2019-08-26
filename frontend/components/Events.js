@@ -31,7 +31,7 @@ const Events = ({ page }) => {
   }
   if (data) {
     return (
-      <Container singleEvent={data.length < 2}>
+      <Container singleEvent={data.events.length < 2}>
         <LSpacer />
         <Filter filter={filter} setFilter={setFilter} />
         <EventListing events={data.events || []} page={page} />
