@@ -5,6 +5,7 @@ export const Container = styled.div`
     grid-template-columns: 0.1fr 4fr 0.1fr;
     grid-template-areas: 'LSpacer SearchContainer RSpacer' 'LSpacer Events RSpacer';
   }
+  height: ${props => (props.singleEvent ? '100vh' : null)};
   display: grid;
   grid-template-columns: 0.25fr 2fr 1fr 0.25fr;
   grid-template-rows: min-content auto;

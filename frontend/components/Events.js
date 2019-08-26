@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 import { withRouter } from 'next/router';
 import { FILTERED_EVENTS_QUERY } from '../graphql/Query';
-import { EVENTS_PER_PAGE } from '../config';
 import Activity from './Activity';
 import EventListing from './EventListing';
 import { Loader, LoaderContainer } from './styled/StyledLoader';
@@ -30,18 +29,19 @@ const Events = ({ page }) => {
       </LoaderContainer>
     );
   }
-
-  return (
-    <Container>
-      <LSpacer />
-      <Filter filter={filter} setFilter={setFilter} />
-      <EventListing events={data.events || []} page={page} />
-      <Right>
-        <Activity />
-      </Right>
-      <RSpacer />
-    </Container>
-  );
+  if (data) {
+    return (
+      <Container singleEvent={data.length < 2}>
+        <LSpacer />
+        <Filter filter={filter} setFilter={setFilter} />
+        <EventListing events={data.events || []} page={page} />
+        <Right>
+          <Activity />
+        </Right>
+        <RSpacer />
+      </Container>
+    );
+  }
 };
 
 Events.propTypes = {
